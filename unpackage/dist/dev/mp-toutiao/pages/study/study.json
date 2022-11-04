@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": false,
+  "navigationBarTitleText": "学习",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationStyle": "default",
+  "usingComponents": {}
+}

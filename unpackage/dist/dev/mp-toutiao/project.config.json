@@ -1,0 +1,18 @@
+{
+    "setting": {
+        "urlCheck": false,
+        "es6": false,
+        "postcss": true,
+        "minified": true,
+        "newFeature": true,
+        "autoCompile": false,
+        "localPlugins": false,
+        "mockUpdate": false,
+        "mockLogin": false,
+        "scripts": false,
+        "autoPush": false,
+        "IDEPreviewHotRestartCache": false
+    },
+    "appid": "ttaf1bd9a63025d67501",
+    "projectname": "client"
+}

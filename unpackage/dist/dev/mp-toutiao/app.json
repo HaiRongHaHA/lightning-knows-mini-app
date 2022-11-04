@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/study/study",
+    "pages/my/my",
+    "pages/login/login",
+    "pages/detail/detail",
+    "pages/apply/apply",
+    "pages/pay/pay",
+    "pages/search/search",
+    "pages/chapters/chapters",
+    "pages/detail/cate/cate",
+    "pages/my/question",
+    "pages/my/historyorder",
+    "pages/pay/notes"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "闪电知道",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#2AA2F5",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "iconWidth": "24px",
+    "spacing": "5px",
+    "fontSize": "24px",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/icon/icon_home.png",
+        "selectedIconPath": "static/icon/icon_home_a.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/study/study",
+        "iconPath": "static/icon/icon_market.png",
+        "selectedIconPath": "static/icon/icon_market_a.png",
+        "text": "学习"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "static/icon/icon_mine.png",
+        "selectedIconPath": "static/icon/icon_mine_a.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

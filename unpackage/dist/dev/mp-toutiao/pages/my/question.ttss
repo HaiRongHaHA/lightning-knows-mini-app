@@ -1,0 +1,6 @@
+
+.content{
+	 padding: 20rpx 30rpx;
+	 font-size: 12px;
+}
+

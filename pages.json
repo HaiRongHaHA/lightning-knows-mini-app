@@ -1,0 +1,169 @@
+{
+	// 设置页面路径及窗口表现
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "闪电知道",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationStyle":"default"
+			}
+		}
+	    ,{
+            "path" : "pages/study/study",
+            "style" :                                                                                    
+            {
+                // "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationBarTitleText": "学习",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationStyle":"default"
+            }
+        }
+        ,{
+            "path" : "pages/my/my",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#fff",
+				"navigationStyle":"default",
+				"backgroundColor":"#f4f4f4"
+            }
+            
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/detail/detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+        }
+        ,{
+            "path" : "pages/apply/apply",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "申请入驻",
+                "enablePullDownRefresh": false,
+				"backgroundColor":"#ffffff",
+				"mp-toutiao":{
+					"backgroundColor":"ffffff"
+				}
+            }
+        }
+        ,{
+            "path" : "pages/pay/pay",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "确认订单",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#fff",
+				"navigationStyle":"default",
+				"backgroundColor":"#f4f4f4"
+            }
+            
+        }
+        ,{
+            "path" : "pages/search/search",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/chapters/chapters",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/detail/cate/cate",
+            "style" :                                                                                    
+            {
+                "enablePullDownRefresh": false,
+				"navigationBarTitleText": "课程分类",
+				"navigationBarBackgroundColor": "#fff"
+            }
+            
+        }
+        ,{
+            "path" : "pages/my/question",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my/historyorder",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/pay/notes",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	// 设置默认页面的窗口表现
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "闪电知道",
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#fff"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#2AA2F5",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"iconWidth":"24px",
+		"spacing": "5px",
+		"fontSize": "24px",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/icon/icon_home.png",
+				"selectedIconPath": "static/icon/icon_home_a.png",
+				"text": "首页"
+			}
+			,{
+				"pagePath": "pages/study/study",
+				"iconPath": "static/icon/icon_market.png",
+				"selectedIconPath": "static/icon/icon_market_a.png",
+				"text": "学习"
+			}
+			,{
+				"pagePath": "pages/my/my",
+				"iconPath": "static/icon/icon_mine.png",
+				"selectedIconPath": "static/icon/icon_mine_a.png",
+				"text": "我的"
+			}
+		]
+	}
+}
