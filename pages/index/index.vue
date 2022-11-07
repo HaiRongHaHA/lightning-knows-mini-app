@@ -104,11 +104,14 @@
 </template>
 
 <script>
-	import menujson from '@/pages/index/menu.json'
-	import coulumn from '@/pages/index/coulumn.json'
-	// import { logincheck } from '@/request/login.js'
-	import {wx_login} from '@/request/login'
+	//基础数据
+	// import menujson from '@/pages/index/menu.json'
+	// import coulumn from '@/pages/index/coulumn.json'
 	
+	//登陆方法  登陆刷新
+	import {wx_login,login_refresh} from '@/request/login'
+	
+	//金额小数点
 	import {toFixed} from '@/utils/utils'
 	
 	export default {
@@ -128,31 +131,25 @@
 			// this.column = coulumn
 			// this.column.push()
 			
+			// 判断token是否过期，token过期则重新调用login.js
 			
-			// 判断token是否存在
+			// 判断是否存在token  不存在
 			if(!uni.getStorageSync('login_session')){
 				// 登陆
 				wx_login();
-				
-				// this.$forceUpdate()
 			}
-			
+			console.log("登陆账号的token为："+uni.getStorageSync('login_session'))
 			// 获取课程列表
 			this.GetCourseList()
 			
 			
 		},
 		methods: {
+			// 金额小数点后两位
 			toFixed,
 			// 获取首页课程列表
 			GetCourseList(){
 				const that = this
-				
-				
-				// 获取登陆存储的token
-				console.log(uni.getStorageSync('login_session'))
-				console.log(uni.getStorageSync('login_oauth'))
-				
 				uni.request({
 					url: uni.COURSE_LIST,
 					method:'GET',
@@ -161,12 +158,9 @@
 						'channel':uni.getStorageSync('login_oauth')
 					},
 					success(res) {
-						console.log(res)
-						uni.showToast({
-							title: res.data.msg,
-							duration: 2000
-						});
-						if(res){
+						console.log(res);
+						// 数据获取成功
+						if(res.data.code ==0){
 							that.column = res.data.data.data
 						}
 					},
@@ -174,6 +168,8 @@
 						console.log(res);
 					}
 				})
+				
+				
 			},
 			
 			// banner跳转申请页面
@@ -201,32 +197,32 @@
 			},
 			
 			// 前往菜单页
-			gotomenu(){
-				uni.navigateTo({
-					url:'/pages/detail/cate/cate',
-					// url: '/pages/common/webview/webview?url=' + item.open_url + '&title=' + item.title,
-					success: res => {},
-					fail: () => {},
-					complete: () => {}
-				});
-			},
+			// gotomenu(){
+			// 	uni.navigateTo({
+			// 		url:'/pages/detail/cate/cate',
+			// 		// url: '/pages/common/webview/webview?url=' + item.open_url + '&title=' + item.title,
+			// 		success: res => {},
+			// 		fail: () => {},
+			// 		complete: () => {}
+			// 	});
+			// },
 			
 			// 前往已购界面
-			gotobuycourse(){
-				uni.switchTab({
-					url: '/pages/study/study'
-				});
-			},
+			// gotobuycourse(){
+			// 	uni.switchTab({
+			// 		url: '/pages/study/study'
+			// 	});
+			// },
 			
 			// 前往申请入驻界面
-			gototeacherapply(){
-				uni.navigateTo({
-					url:'/pages/apply/apply',
-					success: res => {},
-					fail: () => {},
-					complete: () => {}
-				});
-			},
+			// gototeacherapply(){
+			// 	uni.navigateTo({
+			// 		url:'/pages/apply/apply',
+			// 		success: res => {},
+			// 		fail: () => {},
+			// 		complete: () => {}
+			// 	});
+			// },
 			
 			// 搜索跳转
 			searchClick(){
@@ -243,6 +239,4 @@
 
 <style lang="scss">
 @import './index.less';
-	
-	
 </style>

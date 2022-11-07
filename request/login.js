@@ -32,9 +32,11 @@ export const wx_login =()=>{
 									code:loginRes.code,
 									info:infoRes.userInfo
 								},
-								success: (res) => {
+								success: (res)=>{
 									console.log('已经登陆成功，获取token'+res.data.data.token);
 									uni.setStorageSync('login_session',res.data.data.token);
+									login_refresh()
+									//重新调用index首页的onload
 								},
 								fail:(res)=> {
 									console.log(res);
@@ -54,4 +56,12 @@ export const wx_login =()=>{
 			})
 		},
 	})
+}
+
+export const login_refresh =()=>{
+	const pages = getCurrentPages();
+	const curpage = pages[pages.length-1]
+	curpage.onLoad(curpage.options)
+	console.log(curpage)
+	console.log(curpage.options)
 }

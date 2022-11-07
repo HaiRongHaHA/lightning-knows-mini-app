@@ -3092,10 +3092,10 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 119:
-/*!************************************************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/uni_modules/uni-icons/components/uni-icons/icons.js ***!
-  \************************************************************************************************************/
+/***/ 117:
+/*!******************************************************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/uni_modules/uni-icons/components/uni-icons/icons.js ***!
+  \******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4269,17 +4269,17 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 127:
-/*!*************************************************************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/index.js ***!
-  \*************************************************************************************************************************/
+/***/ 125:
+/*!*******************************************************************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/index.js ***!
+  \*******************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 128));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 129));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 130));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 126));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 127));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 128));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -4287,10 +4287,10 @@ var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 1
 
 /***/ }),
 
-/***/ 128:
-/*!************************************************************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/en.json ***!
-  \************************************************************************************************************************/
+/***/ 126:
+/*!******************************************************************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/en.json ***!
+  \******************************************************************************************************************************************/
 /*! exports provided: uni-goods-nav.options.shop, uni-goods-nav.options.cart, uni-goods-nav.buttonGroup.addToCart, uni-goods-nav.buttonGroup.buyNow, default */
 /***/ (function(module) {
 
@@ -4298,10 +4298,10 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"shop\",\"uni-good
 
 /***/ }),
 
-/***/ 129:
-/*!*****************************************************************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hans.json ***!
-  \*****************************************************************************************************************************/
+/***/ 127:
+/*!***********************************************************************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hans.json ***!
+  \***********************************************************************************************************************************************/
 /*! exports provided: uni-goods-nav.options.shop, uni-goods-nav.options.cart, uni-goods-nav.buttonGroup.addToCart, uni-goods-nav.buttonGroup.buyNow, default */
 /***/ (function(module) {
 
@@ -4309,10 +4309,10 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店铺\",\"uni-go
 
 /***/ }),
 
-/***/ 130:
-/*!*****************************************************************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hant.json ***!
-  \*****************************************************************************************************************************/
+/***/ 128:
+/*!***********************************************************************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hant.json ***!
+  \***********************************************************************************************************************************************/
 /*! exports provided: uni-goods-nav.options.shop, uni-goods-nav.options.cart, uni-goods-nav.buttonGroup.addToCart, uni-goods-nav.buttonGroup.buyNow, default */
 /***/ (function(module) {
 
@@ -4320,18 +4320,18 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店鋪\",\"uni-go
 
 /***/ }),
 
-/***/ 138:
+/***/ 136:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 139);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 137);
 
 /***/ }),
 
-/***/ 139:
+/***/ 137:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -4362,7 +4362,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 140);
+module.exports = __webpack_require__(/*! ./runtime */ 138);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -4379,7 +4379,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 140:
+/***/ 138:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -5111,15 +5111,15 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 141:
-/*!***************************************************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/uni_modules/uni-forms/components/uni-forms/validate.js ***!
-  \***************************************************************************************************************/
+/***/ 139:
+/*!*********************************************************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/uni_modules/uni-forms/components/uni-forms/validate.js ***!
+  \*********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 138));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}function _createSuper(Derived) {var hasNativeReflectConstruct = _isNativeReflectConstruct();return function _createSuperInternal() {var Super = _getPrototypeOf(Derived),result;if (hasNativeReflectConstruct) {var NewTarget = _getPrototypeOf(this).constructor;result = Reflect.construct(Super, arguments, NewTarget);} else {result = Super.apply(this, arguments);}return _possibleConstructorReturn(this, result);};}function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _isNativeReflectConstruct() {if (typeof Reflect === "undefined" || !Reflect.construct) return false;if (Reflect.construct.sham) return false;if (typeof Proxy === "function") return true;try {Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));return true;} catch (e) {return false;}}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var pattern = {
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 136));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}function _createSuper(Derived) {var hasNativeReflectConstruct = _isNativeReflectConstruct();return function _createSuperInternal() {var Super = _getPrototypeOf(Derived),result;if (hasNativeReflectConstruct) {var NewTarget = _getPrototypeOf(this).constructor;result = Reflect.construct(Super, arguments, NewTarget);} else {result = Super.apply(this, arguments);}return _possibleConstructorReturn(this, result);};}function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _isNativeReflectConstruct() {if (typeof Reflect === "undefined" || !Reflect.construct) return false;if (Reflect.construct.sham) return false;if (typeof Proxy === "function") return true;try {Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));return true;} catch (e) {return false;}}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var pattern = {
   email: /^\S+?@\S+?\.\S+?$/,
   idcard: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
   url: new RegExp(
@@ -5608,10 +5608,10 @@ SchemaValidator;exports.default = _default;
 
 /***/ }),
 
-/***/ 142:
-/*!************************************************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/uni_modules/uni-forms/components/uni-forms/utils.js ***!
-  \************************************************************************************************************/
+/***/ 140:
+/*!******************************************************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/uni_modules/uni-forms/components/uni-forms/utils.js ***!
+  \******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5913,67 +5913,14 @@ var isEqual = function isEqual(a, b) {
 /***/ }),
 
 /***/ 18:
-/*!******************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/pages/index/menu.json ***!
-  \******************************************************************************/
-/*! exports provided: 0, 1, 2, 3, 4, 5, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("[{\"url\":\"https://img.cdn.zhishitong.vip/s3/1364932886/MjJkmk1.png\",\"title\":\"语言教学\"},{\"url\":\"https://img.cdn.zhishitong.vip/s3/1364932886/9bY4aa9.png\",\"title\":\"美食烹饪\"},{\"url\":\"https://img.cdn.zhishitong.vip/s3/1364932886/rR8wj7O.png\",\"title\":\"文艺生活\"},{\"url\":\"https://img.cdn.zhishitong.vip/s3/1364932886/JoJe7Mo.png\",\"title\":\"技能培训\"},{\"url\":\"https://img.cdn.zhishitong.vip/s3/1364932886/JoJe6LM.png\",\"title\":\"职业教育\"},{\"url\":\"https://img.cdn.zhishitong.vip/s3/1364932886/3a6jAE9.png\",\"title\":\"兴趣爱好\"}]");
-
-/***/ }),
-
-/***/ 19:
-/*!*********************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/pages/index/coulumn.json ***!
-  \*********************************************************************************/
-/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("[{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"},{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"},{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"},{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"},{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"},{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"},{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"},{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"},{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"},{\"image\":\"https://dgicdn.jiandou.vip/s3/1364932886/OOGvogG.png?imageView2/1/w/400/h/300\",\"title\":\"高情商聊天技巧\",\"couser_numb\":\"5\",\"money\":\"299\",\"study\":\"332\"}]");
-
-/***/ }),
-
-/***/ 2:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ 20:
-/*!*************************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/request/login.js ***!
-  \*************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/request/login.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.wx_login = void 0;var wx_login = function wx_login() {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.login_refresh = exports.wx_login = void 0;var wx_login = function wx_login() {
   // 获取服务商供应商
   uni.getProvider({
     service: 'oauth',
@@ -6010,6 +5957,8 @@ module.exports = g;
                 success: function success(res) {
                   console.log('已经登陆成功，获取token' + res.data.data.token);
                   uni.setStorageSync('login_session', res.data.data.token);
+                  login_refresh();
+                  //重新调用index首页的onload
                 },
                 fail: function fail(res) {
                   console.log(res);
@@ -6030,14 +5979,22 @@ module.exports = g;
     } });
 
 };exports.wx_login = wx_login;
+
+var login_refresh = function login_refresh() {
+  var pages = getCurrentPages();
+  var curpage = pages[pages.length - 1];
+  curpage.onLoad(curpage.options);
+  console.log(curpage);
+  console.log(curpage.options);
+};exports.login_refresh = login_refresh;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-toutiao/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
-/***/ 21:
-/*!***********************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/utils/utils.js ***!
-  \***********************************************************************/
+/***/ 19:
+/*!*****************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/utils/utils.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6055,6 +6012,37 @@ function toFixed(num) {var d = arguments.length > 1 && arguments[1] !== undefine
 
   return res;
 }
+
+/***/ }),
+
+/***/ 2:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ }),
 
@@ -12577,9 +12565,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 5:
-/*!*******************************************************************!*\
-  !*** /Users/yanghao/Documents/HBuilderProjects/client/pages.json ***!
-  \*******************************************************************/
+/*!*************************************************************************************!*\
+  !*** /Users/yanghao/Documents/HBuilderProjects/lightning-knows-mini-app/pages.json ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

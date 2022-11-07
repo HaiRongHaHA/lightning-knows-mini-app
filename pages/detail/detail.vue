@@ -165,8 +165,8 @@
 				// 目录切换
 				content_menu:1,
 				
-				// 是否购买  0已经支付  1没有支付
-				hasPay:1,
+				// 是否购买  0已经支付  1没有支付  3默认全都不显示
+				hasPay:3,
 				
 				// 底部按钮  没有购买
 				customButtonGroup1: [{
@@ -212,31 +212,18 @@
 			}
 		},
 		onLoad(e){
-			// 获取当前的课程id
-			// console.log(e.courseid);
-			this.courseid = e.courseid
+			if(e.courseid){
+				// 获取当前的课程id
+				this.courseid = e.courseid
+				// 获取章节列表接口
+				this.getchapterslist(e.courseid)
+				// 获取课程详情接口
+				this.getcoursedetail(e.courseid)
+			}
 			
-			// 获取章节列表接口
-			this.getchapterslist(e.courseid)
-			// 获取课程详情接口
-			this.getcoursedetail(e.courseid)
 		},
 		methods: {
 			toFixed,
-			// 底部菜单
-			// onClick(e){
-			// 	console.log(e)
-			// 	uni.showToast({
-			// 		title: `点击${e.content.text}`,
-			// 		icon: 'none'
-			// 	})
-			// 	if(e.index==0){
-			// 		uni.switchTab({
-			// 			url:"/pages/index/index",
-			// 			animationType: 'fade-in'
-			// 		})
-			// 	}
-			// },
 			
 			// 立即支付按钮
 			buttonClick(e){
