@@ -108,9 +108,6 @@
 	// import menujson from '@/pages/index/menu.json'
 	// import coulumn from '@/pages/index/coulumn.json'
 	
-	//登陆方法  登陆刷新
-	import {wx_login,login_refresh} from '@/request/login'
-	
 	//金额小数点
 	import {toFixed} from '@/utils/utils'
 	
@@ -133,11 +130,6 @@
 			
 			// 判断token是否过期，token过期则重新调用login.js
 			
-			// 判断是否存在token  不存在
-			if(!uni.getStorageSync('login_session')){
-				// 登陆
-				wx_login();
-			}
 			console.log("登陆账号的token为："+uni.getStorageSync('login_session'))
 			// 获取课程列表
 			this.GetCourseList()
