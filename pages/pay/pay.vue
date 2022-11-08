@@ -145,7 +145,7 @@
 			// 获取订单状态
 			getpayinfo(orderNo){
 				uni.request({
-					url: uni.HOSTS_URL+'/svod-api​/out​/xcx​/order​/get​/payinfo',
+					url: uni.GET_PAYINFO,
 					method:'GET',
 					header: {
 						'token': uni.getStorageSync('login_session'), //获取登陆信息
