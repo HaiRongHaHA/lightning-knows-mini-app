@@ -1,37 +1,10 @@
 <script>
+	import interceptor from '@/request/interceptor.js'
+	import apis from '@/request/apis.js'
 	export default {
 		onLaunch: function() {
-			
-			// 后端api接口
-			uni.HOSTS_URL = 'http://43.140.194.230'
-			
-			// 抖音登陆接口
-			uni.LOGIN_DY_URL = uni.HOSTS_URL + '/svod-api/out/xcx/login/dy'
-			
-			// 支付接口
-			uni.DY_PAY = uni.HOSTS_URL + '/svod-api/out/xcx/order/add/dy'
-			
-			// 获取订单支付状态
-			uni.GET_PAYINFO = uni.HOSTS_URL + '/svod-api​/out​/xcx​/order​/get​/payinfo'
-			
-			// 课程列表
-			uni.COURSE_LIST = uni.HOSTS_URL + '/svod-api/out/xcx/course/page'
-			
-			// 课程详情
-			uni.COURSE_DETAIL = uni.HOSTS_URL + '/svod-api/out/xcx/course/detail'
-			
-			// 课程章节接口
-			uni.COURSE_CHAPTER = uni.HOSTS_URL + '/svod-api/out/xcx/chapter/page'
-			
-			// 获取讲师基本信息
-			uni.TEACHER_DETAIL = uni.HOSTS_URL + '/svod-api/out/xcx/teacher/info'
-			
-			// 学员订单接口
-			uni.STUDENT_ORDER = uni.HOSTS_URL + '/svod-api/out/xcx/order/page'
-			
-			//讲师申请入驻
-			uni.TEACHER_JOIN = uni.HOSTS_URL + '/svod-api/out/xcx/apply/in'
-			
+			interceptor()
+			apis()
 			console.log('App Launch')
 			// 1、底部logo公共组建
 			// 2、立即入驻页面重新填写

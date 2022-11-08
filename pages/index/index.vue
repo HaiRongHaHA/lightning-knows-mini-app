@@ -11,7 +11,7 @@
 		<!-- banner 轮播图 uni-mt-5-->
 		<view class="swiper">
 			<swiper class="u-swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
-				<swiper-item @click="teacherapply"><view class="swiper-item"><image src="https://dgicdn.jiandou.vip/s3/1364932886/RWnda8W.png" mode=""></image></view></swiper-item>
+				<swiper-item @click="teacherapply"><view class="swiper-item"><image src="https://dgicdn.jiandou.vip/s3/1364932886/RWnda8W.png" mode="aspectFill"></image></view></swiper-item>
 				
 			</swiper>
 		</view>
@@ -78,7 +78,7 @@
 		<view class="column uni-px-5">
 			<view class="column_title">课程列表</view>
 			<view class="column_item uni-py-5" v-for="(data,index) in column" :key="index" @click.native="columnOnclick(data.courseId)">
-				<view class="column_item_left"><image :src="data.showPicUri"></image></view>
+				<view class="column_item_left"><image :src="data.showPicUri" mode="aspectFill"></image></view>
 				<view class="column_item_right">
 					<view class="column_item_top">{{data.title}}</view>
 					<view class="column_item_center" v-if="data.payCnt == null">0人在学</view>

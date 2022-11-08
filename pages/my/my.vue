@@ -2,8 +2,8 @@
 	<view class="my-page">
 		<view class="userInfo">
 			<view class="userimgbox">
-				<image class="avatar_img" v-if="infos.avatarUrl" :src="infos.avatarUrl" mode=""></image>
-				<image class="avatar_img" v-else src="https://img.cdn.zhishitong.vip/s3/1364932886/Zv9LeK1.jpg" mode=""></image>
+				<image class="avatar_img" v-if="infos.avatarUrl" :src="infos.avatarUrl" mode="aspectFill"></image>
+				<image class="avatar_img" v-else src="https://img.cdn.zhishitong.vip/s3/1364932886/Zv9LeK1.jpg" mode="aspectFill"></image>
 				<view  class="img-icon"  @click="updataUserInfo">
 					<uni-icons type="loop" color="#636363" size="20"></uni-icons>
 				</view>

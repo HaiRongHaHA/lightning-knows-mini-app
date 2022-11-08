@@ -1,7 +1,7 @@
 <template>
 	<view class="page-detail">
 		<view class="banner">
-			<view class="banner_swiper"><image :src="datail.banner" mode=""></image></view>
+			<view class="banner_swiper"><image :src="datail.banner" mode="aspectFill"></image></view>
 		</view>
 		
 		<view class="content">
@@ -47,7 +47,7 @@
 			<view class="user_box uni-mt-5">
 				<view class="user" >
 					<view class="user_info">
-						<image class="user_img" :src="teacher.userimg" mode=""></image>
+						<image class="user_img" :src="teacher.userimg" mode="aspectFill"></image>
 						<view class="user_base">
 							<view class="user_nickname"> 
 								<view class="user_nik">{{teacher.nickname}}</view>

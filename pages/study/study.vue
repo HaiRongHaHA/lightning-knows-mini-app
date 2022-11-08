@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<view class="blank" v-show="hascourse == 0">
-			<view class="empty"><view class="empty_box"><image class="empty_img" src="https://m.zhishitong.vip/static/img/wushuju.e16c3059.png" mode=""></image></view><view class="empty_text">没有要学习的课程</view></view>
+			<view class="empty"><view class="empty_box"><image class="empty_img" src="https://m.zhishitong.vip/static/img/wushuju.e16c3059.png" mode="aspectFill"></image></view><view class="empty_text">没有要学习的课程</view></view>
 			<!-- <button class="home">去首页逛逛</button> -->
 		</view>
 		<view class="course-list" v-show="hascourse ==1">
@@ -9,7 +9,7 @@
 				<!-- 课程列表 -->
 				<view class="column uni-px-5">
 					<view class="column_item uni-py-5" v-for="(data,index) in courselist" :key="index" @click.native="coursedetail(data.courseId)">
-						<view class="column_item_left"><image :src="data.courseShowPicUrl"></image></view>
+						<view class="column_item_left"><image :src="data.courseShowPicUrl" mode="aspectFill"></image></view>
 						<view class="column_item_right">
 							<view class="column_item_top">{{data.courseTitle}}</view>
 							<view class="column_item_bottom">

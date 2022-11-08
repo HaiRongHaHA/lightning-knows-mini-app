@@ -3,11 +3,11 @@
 		<view class="container">
 			<view class="card-box">
 				<view class="card-header">
-					<image class="header-avatar" :src="info.userimg" mode=""></image>
+					<image class="header-avatar" :src="info.userimg" mode="aspectFill"></image>
 					<view class="header-content">{{info.nickname}}</view>
 				</view>
 				<view class="card-content">
-					<view class="item-header"><image class="item-avatar" :src="info.banner" mode=""></image></view>
+					<view class="item-header"><image class="item-avatar" :src="info.banner" mode="aspectFill"></image></view>
 					<view class="item-content">
 						<view class="item-content-title">{{info.title}}</view>
 						<view class="item-content-coursenumb">共{{info.chapter}}节课</view>
