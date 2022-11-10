@@ -21,6 +21,7 @@
 <style lang='scss'>
 	/*每个页面公共css */
 	@import '@/uni_modules/uni-scss';
+	
 	/* 解决头条小程序组件内引入字体不生效的问题 */
 	body {
 		background-color: #f6f6f6;
