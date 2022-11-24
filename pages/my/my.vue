@@ -4,29 +4,37 @@
 			<view class="userimgbox">
 				<image class="avatar_img" v-if="infos.avatarUrl" :src="infos.avatarUrl" mode="aspectFill"></image>
 				<image class="avatar_img" v-else src="https://img.cdn.zhishitong.vip/s3/1364932886/Zv9LeK1.jpg" mode="aspectFill"></image>
-				<view  class="img-icon"  @click="updataUserInfo">
-					<uni-icons type="loop" color="#636363" size="20"></uni-icons>
-				</view>
 			</view>
 			<view class="logo-title uni-mr-5" v-if="infos.nickName">{{infos.nickName}}</view>
 			<view class="logo-title uni-mr-5" v-else  @click="getUserInfos()">立即登陆</view>
+			<image class="img-update" src="../../static/icon/undate.png" @click="updataUserInfo"></image>
 		</view>
 		<view class="user-list">
 			<view class="list-item" @click="teacherapply()">
 				<view class="item-title">立即入驻</view>
-				<view class="item-right">></view>
+				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
 			</view>
-			<view class="list-item">
+			<button open-type="contact">
+				<view class="list-item" style="margin-bottom: 0;">
+						<view class="item-title">咨询反馈</view>
+						<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
+				</view>
+			</button>
+			<!-- <view class="list-item">
 				<view class="item-title">服务协议</view>
-				<view class="item-right">></view>
+				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
 			</view>
 			<view class="list-item">
 				<view class="item-title">隐私政策</view>
-				<view class="item-right">></view>
-			</view>
+				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
+			</view> -->
 			<view class="list-item" @click="question()">
 				<view class="item-title">常见问题</view>
-				<view class="item-right">></view>
+				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
+			</view>
+			<view class="list-item">
+				<view class="item-title">关于课堂</view>
+				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
 			</view>
 		</view>
 		
@@ -113,14 +121,10 @@
 		// background-color: #f4f4f4;
 		box-sizing: border-box;
 	}
-	.userimgbox{
-		    position: relative;
-			.img-icon{
-				position: absolute;
-				right: 20rpx;
-				bottom: 10px;
-			}
-	}
+	// .userimgbox{
+	// 	    position: relative;
+	// 		
+	// }
 	
 	// 登陆信息页
 	.userInfo{
@@ -133,39 +137,52 @@
 			color: #333;
 			font-size: 40rpx;
 		}
-	}
-	.userInfo image{
-		width: 120rpx;
-		height: 120rpx;
-		border-radius: 50%;
-		overflow: hidden;
-		border: 3rpx solid #fff;
-		margin-right: 30rpx;
-		image{
-			width: 100%;
-			height: 100%;
-		}
-		img{
-			width: 100%;
-			height: 100%;
-			border-radius: 20px;
-		}
-		.avatar_img{
+		.userimgbox .avatar_img{
+			width: 60px;
+			height: 60px;
 			border-radius: 50%;
-			width: 30rpx;
-			height: 30rpx;
 			overflow: hidden;
-			border: 3rpx solid #fff;
+			border: 1px solid #fff;
+			margin-right: 15px;
 		}
-		
+		.img-update{
+			width: 40rpx;
+			height:40rpx
+		}
 	}
+	// .userInfo image{
+	// 	width: 120rpx;
+	// 	height: 120rpx;
+	// 	border-radius: 50%;
+	// 	overflow: hidden;
+	// 	border: 3rpx solid #fff;
+	// 	margin-right: 30rpx;
+	// 	image{
+	// 		width: 100%;
+	// 		height: 100%;
+	// 	}
+	// 	img{
+	// 		width: 100%;
+	// 		height: 100%;
+	// 		border-radius: 20px;
+	// 	}
+	// }
+		// .avatar_img{
+		// 	border-radius: 50%;
+		// 	width: 30rpx;
+		// 	height: 30rpx;
+		// 	overflow: hidden;
+		// 	border: 3rpx solid #fff;
+		// }
+		
+	
 	// 列表页面
 	.list-item{
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		background: #fff;
-		padding: 28rpx;
+		padding: 30rpx 20rpx;
 		// padding-top: 25rpx;
 		margin-bottom: 24rpx;
 		border-radius: 24rpx;
@@ -173,6 +190,10 @@
 		color: #636363;
 		.item-right{
 			color: #999;
+			image{
+				width: 20rpx;
+				height: 20rpx;
+			}
 		}
 	}
 	// 立即入驻图片
@@ -187,5 +208,41 @@
 		}
 	}
 	
+	
+	// 默认样式
+	button {
+		position:relative;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		padding-left:0;
+		padding-right:0;
+		box-sizing:border-box;
+		font-size:28rpx;
+		text-align:center;
+		text-decoration:none;
+		line-height:1;
+		border-radius:24rpx;
+		-webkit-tap-highlight-color:transparent;
+		overflow:hidden;
+		color:#000000;
+		background-color:#fff;
+		margin-bottom: 24rpx;
+	}
+	// 边框样式
+	button::after{
+		  border: 0;
+		  border: none;
+	}
+	// 禁用时样式
+	button[disabled] {
+		  background-color: #fff;
+		  color: #666;
+	}
+	// 点击时样式
+	.button-hover {
+		color:rgba(0, 0, 0, 0.6);
+		background-color:#fff;
+	}
 	
 </style>

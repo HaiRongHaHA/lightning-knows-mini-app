@@ -32,7 +32,9 @@
 				<view class="buy-tips-title">
 					购买需知
 				</view>
-				<view class="buy-tips-right">></view>
+				<view class="buy-tips-right">
+					<image src="../../static/icon/right.png" mode=""></image>
+				</view>
 			</view>
 			<!-- 底部提交订单按钮 -->
 			<view class="good-carts">
@@ -202,8 +204,16 @@
 		.buy-tips{
 			display: flex;
 			justify-content: space-between;
+			    align-content: center;
+			    align-items: center;
 			.buy-tips-right{
 				color: #636363;
+				width: 30rpx;
+				height: 30rpx;
+				image{
+					width: 30rpx;
+					height: 30rpx;
+				}
 			}
 		}
 		// 卡片
@@ -247,7 +257,7 @@
 				.phoneout{
 					width: 100%;
 					padding-top: 10px;
-					font-size: 28rpx;
+					font-size: 24rpx;
 				}
 				.item-header{
 					margin-right: 20rpx;

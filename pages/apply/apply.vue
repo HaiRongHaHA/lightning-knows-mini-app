@@ -16,7 +16,7 @@
 				<uni-forms-item name="note" label="备注">
 					<uni-easyinput v-model="formData.note" type="textarea" placeholder="请输入备注信息" />
 				</uni-forms-item>
-				<button  type="primary" class="button" @click="submit">校验表单</button>
+				<button  type="primary" class="button" @click="submit">申请入驻</button>
 			</uni-forms>
 		</view>
 		

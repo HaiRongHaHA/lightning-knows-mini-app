@@ -74,8 +74,8 @@
 			</view>
 		</view> -->
 		
-		<!-- 课程列表 -->
-		<view class="column uni-px-5">
+		<!-- 课程列表 uni-px-7-->
+		<view class="column">
 			<view class="column_title">课程列表</view>
 			<view class="column_item uni-py-5" v-for="(data,index) in column" :key="index" @click.native="columnOnclick(data.courseId)">
 				<view class="column_item_left"><image :src="data.showPicUri" mode="aspectFill"></image></view>
@@ -130,10 +130,14 @@
 			
 			// 判断token是否过期，token过期则重新调用login.js
 			
-			console.log("登陆账号的token为："+uni.getStorageSync('login_session'))
+			// console.log("登陆账号的token为："+uni.getStorageSync('login_session'))
 			// 获取课程列表
 			this.GetCourseList()
-			
+			uni.request({
+				success: () => {
+						
+				}
+			})
 			
 		},
 		methods: {
@@ -149,7 +153,7 @@
 						'token': uni.getStorageSync('login_session'), //获取登陆信息
 						'channel':uni.getStorageSync('login_oauth')
 					},
-					success(res) {
+					success: (res) => {
 						console.log(res);
 						// 数据获取成功
 						if(res.data.code ==0){
@@ -160,8 +164,6 @@
 						console.log(res);
 					}
 				})
-				
-				
 			},
 			
 			// banner跳转申请页面
