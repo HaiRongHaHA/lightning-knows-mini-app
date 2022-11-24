@@ -12,7 +12,6 @@
 		<view class="swiper">
 			<swiper class="u-swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
 				<swiper-item @click="teacherapply"><view class="swiper-item"><image src="https://dgicdn.jiandou.vip/s3/1364932886/RWnda8W.png" mode="aspectFill"></image></view></swiper-item>
-				
 			</swiper>
 		</view>
 		

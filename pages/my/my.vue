@@ -116,7 +116,7 @@
 	}
 	.my-page{
 		min-height: 50vh;
-		padding: 0 20rpx 30rpx;
+		padding: 0 30rpx 30rpx;
 		// background: linear-gradient(180deg,#eef4fc,#f5f6f9);
 		// background-color: #f4f4f4;
 		box-sizing: border-box;

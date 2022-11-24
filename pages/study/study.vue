@@ -184,6 +184,7 @@
 		    flex-direction: column;
 		    justify-content: space-between;
 		    width: 100%;
+			overflow: hidden;
 		}
 		.column_item_top{
 			font-size: 28rpx;
