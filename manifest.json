@@ -1,5 +1,5 @@
 {
-    "name" : "client",
+    "name" : "lightning-knows-mini-app",
     "appid" : "__UNI__EB201A4",
     "description" : "",
     "versionName" : "1.0.0",
@@ -64,10 +64,11 @@
     },
     "mp-toutiao" : {
         "usingComponents" : true,
-        "appid" : "ttaf1bd9a63025d67501",
+        "appid" : "tt3f37498aa008ca0101",
         "setting" : {
             "postcss" : true,
-            "minified" : true
+            "minified" : true,
+            "urlCheck" : false
         }
     },
     "uniStatistics" : {
