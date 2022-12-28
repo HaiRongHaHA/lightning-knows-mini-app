@@ -33,9 +33,12 @@ export const wx_login =()=>{
 									info:infoRes.userInfo
 								},
 								success: (res)=>{
-									console.log('已经登陆成功，获取token'+res.data.data.token);
-									uni.setStorageSync('login_session',res.data.data.token);
-									login_refresh()
+									if(res.data.code == 0){
+										console.log('已经登陆成功，获取token'+res.data.data.token);
+										uni.setStorageSync('login_session',res.data.data.token);
+										login_refresh()
+									}
+									
 									//重新调用index首页的onload
 								},
 								fail:(res)=> {

@@ -5,7 +5,7 @@
 			"path": "pages/index/index",
 			"navigationStyle":"",
 			"style": {
-				"navigationBarTitleText": "闪电知道",
+				"navigationBarTitleText": "闪电课堂",
 				"navigationBarBackgroundColor": "#fff",
 				"navigationStyle":"default"
 			}
@@ -134,7 +134,7 @@
 	// 设置默认页面的窗口表现
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "闪电知道",
+		"navigationBarTitleText": "闪电课堂",
 		"navigationBarBackgroundColor": "#fff",
 		"backgroundColor": "#fff"
 	},

@@ -124,7 +124,20 @@
 								service:5,
 								success: function (res) {
 									console.log('success:' + JSON.stringify(res));
-									that.getpayinfo(orderinfo.orderNo)
+									// 0：支付成功
+									// 1：支付超时
+									// 2：支付失败
+									// 3：支付关闭
+									// 4：支付取消
+									if(res.code ==0){
+										that.getpayinfo(orderinfo.orderNo)
+									}else{
+										uni.showToast({
+											title: '支付失败 请重新支付',
+											icon: 'none'
+										})
+									}
+									
 								},
 								fail: function (err) {
 									console.log('fail:' + JSON.stringify(err));
@@ -146,6 +159,7 @@
 		
 			// 获取订单状态
 			getpayinfo(orderNo){
+				const that =this;
 				uni.request({
 					url: uni.GET_PAYINFO,
 					method:'GET',
@@ -158,6 +172,12 @@
 					},
 					success(res) {
 						console.log(res)
+						// 购买成功查看课程
+						if(res.code ==0){
+							// 支付成功跳转支付成功界面
+							that.buycourse();
+						}
+						
 					},
 					fail:(res)=> {
 						console.log(res);

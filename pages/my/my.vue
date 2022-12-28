@@ -32,10 +32,10 @@
 				<view class="item-title">常见问题</view>
 				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
 			</view>
-			<view class="list-item">
+			<!-- <view class="list-item">
 				<view class="item-title">关于课堂</view>
 				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
-			</view>
+			</view> -->
 		</view>
 		
 	</view>

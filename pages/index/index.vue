@@ -129,15 +129,10 @@
 			
 			// 判断token是否过期，token过期则重新调用login.js
 			
-			// console.log("登陆账号的token为："+uni.getStorageSync('login_session'))
+			console.log("登陆账号的token为："+uni.getStorageSync('login_session'))
+			
 			// 获取课程列表
 			this.GetCourseList()
-			uni.request({
-				success: () => {
-						
-				}
-			})
-			
 		},
 		methods: {
 			// 金额小数点后两位

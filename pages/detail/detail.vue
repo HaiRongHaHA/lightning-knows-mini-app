@@ -233,7 +233,7 @@
 					'banner':this.datail.banner,
 					'title':this.datail.title,
 					'price':this.datail.price,
-					'chapter':'0'
+					'chapter':this.chapter
 				}
 				const content = JSON.stringify(detail)
 				// console.log(content);
