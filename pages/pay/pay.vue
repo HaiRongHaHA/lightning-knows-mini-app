@@ -173,7 +173,7 @@
 					success(res) {
 						console.log(res)
 						// 购买成功查看课程
-						if(res.code ==0){
+						if(res.data.code ==0){
 							// 支付成功跳转支付成功界面
 							that.buycourse();
 						}

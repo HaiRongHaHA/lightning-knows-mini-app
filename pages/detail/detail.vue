@@ -99,7 +99,7 @@
 						<!-- <image src="https://m.zhishitong.vip/static/img/bofang.803f5566.png" mode=""></image> -->
 						<view class="title_text">1.购买课程后如何观看?</view>
 					</view>
-					<view class="item_text">平台搜索【闪电知道】进入小程序，点击底部【学习】按钮，即可观看已购买课程。</view>
+					<view class="item_text">平台搜索【闪电课堂】进入小程序，点击底部【学习】按钮，即可观看已购买课程。</view>
 				</view>
 				<view class="notice_item">
 					<view class="item_title">
@@ -119,7 +119,7 @@
 						1若您需要咨询涉及老师课程内容相关，可通过私信联系老师进行沟通解答。
 					</view>
 					<view class="item_text">
-						2若您需要咨询涉及闪电知道程序使用，可点击页面右上角【反馈】按钮进行线上反馈。
+						2若您需要咨询涉及闪电课堂程序使用，可点击页面右上角【反馈】按钮进行线上反馈。
 					</view>
 				</view>
 				<view class="notice_item">
@@ -137,6 +137,7 @@
 			</view>
 		
 			<view class="" style="height: 80px;"></view>
+			<!-- <pay-button order-status="{{0}}" order-id="xxx" bind:pay="onContinutePay" /> -->
 		</view>
 		
 		<!-- 是否购买  0已经支付  1没有支付 -->

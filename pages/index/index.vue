@@ -7,7 +7,9 @@
 			<uni-search-bar v-model="keyword" ref="searchBar" radius="100" cancelButton="none" disabled placeholder="请输入搜索课程" @click="searchClick" />
 			<view class="cover-search-bar" @click="searchClick"></view>
 		</view> -->
-		
+		<!-- <view class="test">
+			<button @click="columnOnclick('4')">测试</button>
+		</view> -->
 		<!-- banner 轮播图 uni-mt-5-->
 		<view class="swiper">
 			<swiper class="u-swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">

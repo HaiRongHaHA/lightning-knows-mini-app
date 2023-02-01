@@ -3,8 +3,8 @@ import {
 } from './login.js'
 
 const BASE_URL = {
-	development: 'https://t-api.sdknow.cn', // 开发域名
-	production: 'https://t-api.sdknow.cn' // 生产域名http://43.140.194.230
+	development: 'https://api.sdknow.cn', // 开发域名
+	production: 'https://api.sdknow.cn' // 生产域名http://43.140.194.230
 }
 
 export const interceptor = () => {

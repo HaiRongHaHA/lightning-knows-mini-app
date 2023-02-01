@@ -34,30 +34,37 @@
 			}
 		},
 		onLoad() {
-			const that = this;
-			uni.request({
-				url: uni.STUDENT_ORDER,
-				method:'GET',
-				header: {
-					'token': uni.getStorageSync('login_session'), //获取登陆信息
-					'channel':uni.getStorageSync('login_oauth')
-				},
-				success(res) {
-					console.log(res)
-					//没有数据  0没有数据 1有数据
-					if(res.data.data.total==0){
-						that.hascourse = 0
-					}else{
-						that.hascourse = 1
-						that.courselist = res.data.data.data
-					}
-				},
-				fail:(res)=> {
-					console.log(res);
-				}
-			})
+			
+		},
+		onShow() {
+			// 每次打开页面都请求刷新数据
+			this.req()
 		},
 		methods: {
+			req(){
+				const that = this;
+				uni.request({
+					url: uni.STUDENT_ORDER,
+					method:'GET',
+					header: {
+						'token': uni.getStorageSync('login_session'), //获取登陆信息
+						'channel':uni.getStorageSync('login_oauth')
+					},
+					success(res) {
+						console.log(res)
+						//没有数据  0没有数据 1有数据
+						if(res.data.data.total==0){
+							that.hascourse = 0
+						}else{
+							that.hascourse = 1
+							that.courselist = res.data.data.data
+						}
+					},
+					fail:(res)=> {
+						console.log(res);
+					}
+				})
+			},
 			coursedetail(id){
 				uni.navigateTo({
 					url:`/pages/detail/detail?courseid=${id}`
