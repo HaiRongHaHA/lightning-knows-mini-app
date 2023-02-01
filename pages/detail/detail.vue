@@ -136,9 +136,10 @@
 				</view>
 			</view>
 		
-			<!-- <view class="" style="height: 80px;"></view> -->
-			<zijie-pay-button order-status="{0}" order-id="xxx" bind:pay="onContinutePay" />
+			<view class="" style="height: 80px;"></view>
+			<zijie-pay-button :mode="2" goodsId="1" />
 		</view>
+		
 		
 		<!-- 是否购买  0已经支付  1没有支付 -->
 		<!-- <view class="goods-carts" v-show="hasPay ==1">
@@ -647,9 +648,5 @@
 		}
 		.bg-fff{
 			background-color: #fff;
-		}
-		.custom-pay-buttom{
-			width: 100%;
-			background: linear-gradient(18deg, #6A19D9, #EE7DFF);
 		}
 </style>

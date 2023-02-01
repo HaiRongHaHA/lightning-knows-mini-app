@@ -1,9 +1,11 @@
 <!-- 立即抢购 -->
 <pay-button
-  mode="{{2}}"
   class="custom-pay-button"
+  mode="{{mode}}"
   goods-id="{{goodsId}}"
-  goods-type="{{2}}"
+  goods-type="{{1}}"
+  biz-line="{{2}}"
+  orderId="{{orderId}}"
   bind:getgoodsinfo="getGoodsInfo"
   bind:placeorder="userLogin"
   bind:pay="onPay"

@@ -1,7 +1,15 @@
 Component({
   properties: {
     mode: Number,
+    mode: {
+      type: Number,
+      value: 2,
+    },
     goodsId: {
+      type: String,
+      value: "",
+    },
+    orderId: {
       type: String,
       value: "",
     },
