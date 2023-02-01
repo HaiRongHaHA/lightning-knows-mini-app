@@ -136,24 +136,24 @@
 				</view>
 			</view>
 		
-			<view class="" style="height: 80px;"></view>
-			<!-- <pay-button order-status="{{0}}" order-id="xxx" bind:pay="onContinutePay" /> -->
+			<!-- <view class="" style="height: 80px;"></view> -->
+			<zijie-pay-button order-status="{0}" order-id="xxx" bind:pay="onContinutePay" />
 		</view>
 		
 		<!-- 是否购买  0已经支付  1没有支付 -->
-		<view class="goods-carts" v-show="hasPay ==1">
-			<!-- <uni-section title="自定义用法" type="line"> 未支付-->
+		<!-- <view class="goods-carts" v-show="hasPay ==1">
+			<uni-section title="自定义用法" type="line"> 未支付
 				<uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup1" @click="onClick"
 					@buttonClick="buttonClick" />
-			<!-- </uni-section> -->
-		</view>
+			</uni-section>
+		</view> -->
 		
-		<view class="goods-carts" v-show="hasPay ==0">
-			<!-- <uni-section title="自定义用法" type="line"> 已经支付-->
+		<!-- <view class="goods-carts" v-show="hasPay ==0">
+			<uni-section title="自定义用法" type="line"> 已经支付
 				<uni-goods-nav :fill="true" :options="options1" :button-group="customButtonGroup2" @click="onClick1"
 					@buttonClick="buttonClick1" />
-			<!-- </uni-section> -->
-		</view>
+			</uni-section>
+		</view> -->
 	</view>
 </template>
 
@@ -647,5 +647,9 @@
 		}
 		.bg-fff{
 			background-color: #fff;
+		}
+		.custom-pay-buttom{
+			width: 100%;
+			background: linear-gradient(18deg, #6A19D9, #EE7DFF);
 		}
 </style>

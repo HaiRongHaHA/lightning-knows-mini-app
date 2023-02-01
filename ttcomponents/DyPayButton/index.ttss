@@ -1,0 +1,4 @@
+.custom-pay-buttom{
+  width: 100%;
+  background: linear-gradient(18deg, #6A19D9, #EE7DFF);
+}

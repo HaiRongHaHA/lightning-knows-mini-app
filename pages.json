@@ -47,7 +47,10 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+                "usingComponents":{
+                    "zijie-pay-button":"/ttcomponents/DyPayButton/index"
+                }
             }
         }
         ,{
