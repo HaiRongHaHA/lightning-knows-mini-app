@@ -137,7 +137,7 @@
 			</view>
 		
 			<view class="" style="height: 80px;"></view>
-			<zijie-pay-button :mode="2" goodsId="1" />
+			<zijie-pay-button v-if="datail.outCourseId" :mode="2" :goodsId="datail.outCourseId" />
 		</view>
 		
 		
@@ -190,6 +190,7 @@
 				
 				//课程信息
 				datail:{
+					outCourseId:"",
 					banner:"",
 					title:"",
 					anchorTitle:'',
@@ -306,6 +307,7 @@
 						const CourseDetail = res.data.data;
 						if(CourseDetail){
 							that.datail={
+								outCourseId: CourseDetail.outCourseId,
 								'banner':CourseDetail.showPicUri,// 课程图片
 								'title':CourseDetail.title,// 课程标题
 								'showPrice':CourseDetail.showPrice,// 课程划线价格
