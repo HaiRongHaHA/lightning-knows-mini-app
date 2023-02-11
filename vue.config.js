@@ -22,16 +22,18 @@ module.exports = {
                  * Object 类型字段合并，在key相同的情况会覆盖value
                  * Array 类型合并 是将两个数组合并
                 */
-                app: {
-                    'pages': [
-                        // 下单页
-                        "ext://microapp-trade-plugin/order-confirm",
-                        // 退款申请页
-                        "ext://microapp-trade-plugin/refund-apply",
-                        // 退款详情页
-                        "ext://microapp-trade-plugin/refund-detail"
-                    ]
-                }
+                // #ifdef  MP-TOUTIAO
+				app: {
+					'pages': [
+						// 下单页
+						"ext://microapp-trade-plugin/order-confirm",
+						// 退款申请页
+						"ext://microapp-trade-plugin/refund-apply",
+						// 退款详情页
+						"ext://microapp-trade-plugin/refund-detail"
+					]
+				},
+				// #endif
             })
         ]
     }

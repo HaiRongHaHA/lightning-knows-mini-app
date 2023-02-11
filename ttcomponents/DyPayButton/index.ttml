@@ -3,6 +3,7 @@
   class="custom-pay-button"
   mode="{{mode}}"
   goods-id="{{goodsId}}"
+  courseId="{{2}}"
   goods-type="{{1}}"
   biz-line="{{2}}"
   orderId="{{orderId}}"

@@ -100,7 +100,10 @@
 						'channel':uni.getStorageSync('login_oauth')
 					},
 					data:{
-						courseId: that.courseid
+						courseId: "2",
+						contact:'',
+						note:'',
+						phone:''
 					},
 					success:(res) =>{
 						if(res.code == 4500){
@@ -113,43 +116,44 @@
 						
 						const orderinfo = res.data.data
 						//判断是否存在
-						if(res.data){
-							// 前端调起支付窗口
-							uni.requestPayment({
-								provider:'toutiao',
-								orderInfo: {
-									order_id: orderinfo.outOrderId,
-									order_token:orderinfo.orderToken,
-								}, 
-								service:5,
-								success: function (res) {
-									console.log('success:' + JSON.stringify(res));
-									// 0：支付成功
-									// 1：支付超时
-									// 2：支付失败
-									// 3：支付关闭
-									// 4：支付取消
-									if(res.code ==0){
-										that.getpayinfo(orderinfo.orderNo)
-									}else{
-										uni.showToast({
-											title: '支付失败 请重新支付',
-											icon: 'none'
-										})
-									}
+						// if(res.data){
+						// 	// 前端调起支付窗口
+						// 	uni.requestPayment({
+						// 		provider:'toutiao',
+						// 		orderInfo: {
+						// 			order_id: orderinfo.outOrderId,
+						// 			order_token:orderinfo.orderToken,
+						// 		}, 
+						// 		service:5,
+						// 		success: function (res) {
+						// 			console.log('success:' + JSON.stringify(res));
+						// 			// 0：支付成功
+						// 			// 1：支付超时
+						// 			// 2：支付失败
+						// 			// 3：支付关闭
+						// 			// 4：支付取消
+						// 			if(res.code ==0){
+						// 				that.getpayinfo(orderinfo.orderNo)
+						// 			}else{
+						// 				uni.showToast({
+						// 					title: '支付失败 请重新支付',
+						// 					icon: 'none'
+						// 				})
+						// 			}
 									
-								},
-								fail: function (err) {
-									console.log('fail:' + JSON.stringify(err));
-								},
-								getOrderStatus:function(res){
-									console.log(res);
-								}
-								// complete:function(res){
-								// 	console.log(res)
-								// }
-							})
-						}
+						// 		},
+						// 		fail: function (err) {
+						// 			console.log('fail:' + JSON.stringify(err));
+						// 		},
+						// 		getOrderStatus:function(res){
+						// 			console.log(res);
+						// 		}
+						// 		// complete:function(res){
+						// 		// 	console.log(res)
+						// 		// }
+						// 	})
+						// }
+						
 					},
 					fail:(res)=> {
 						console.log(res.data);

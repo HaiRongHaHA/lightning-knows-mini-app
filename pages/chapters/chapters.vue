@@ -59,7 +59,10 @@
 			this.courseid = e.courseid;
 			
 			// 获取章节列表接口
-			this.getchapterslist(e.courseid);
+			if(e.courseid){
+				this.getchapterslist(e.courseid);
+			}
+			
 			
 			
 		},

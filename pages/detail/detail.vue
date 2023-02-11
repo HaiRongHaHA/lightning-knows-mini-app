@@ -136,25 +136,41 @@
 				</view>
 			</view>
 		
-			<view class="" style="height: 80px;"></view>
-			<zijie-pay-button v-if="datail.outCourseId" :mode="2" :goodsId="datail.outCourseId" />
+			<view class="" style="height: 80px;">
+			<!-- {{datail.courseId}} -->
+			</view>
+			
+			
 		</view>
 		
 		
 		<!-- 是否购买  0已经支付  1没有支付 -->
-		<!-- <view class="goods-carts" v-show="hasPay ==1">
-			<uni-section title="自定义用法" type="line"> 未支付
-				<uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup1" @click="onClick"
-					@buttonClick="buttonClick" />
-			</uni-section>
-		</view> -->
+		<view class="goods-carts" v-show="hasPay ==1">
+			<!-- <uni-section title="自定义用法" type="line"> -->
+			<!-- 未支付 -->
+				<!-- <uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup1" @click="onClick"
+					@buttonClick="buttonClick" /> -->
+			<!-- </uni-section> -->
+			
+			<!--  #ifdef MP-TOUTIAO -->
+			<zijie-pay-button
+			v-if="datail.outCourseId" 
+			:mode="2" 
+			:goodsId="datail.outCourseId"
+			:courseId="datail.courseId"
+			/>
+			<!--  #endif -->
+		</view>
 		
-		<!-- <view class="goods-carts" v-show="hasPay ==0">
-			<uni-section title="自定义用法" type="line"> 已经支付
-				<uni-goods-nav :fill="true" :options="options1" :button-group="customButtonGroup2" @click="onClick1"
-					@buttonClick="buttonClick1" />
-			</uni-section>
-		</view> -->
+		<view class="goods-carts" v-show="hasPay ==0">
+				<uni-goods-nav 
+				:fill="true" 
+				:options="options1" 
+				:button-group="customButtonGroup2" 
+				@click="onClick1"
+				@buttonClick="buttonClick1" 
+				/>
+		</view>
 	</view>
 </template>
 
@@ -196,7 +212,8 @@
 					anchorTitle:'',
 					stage:0,
 					study:"",
-					strings: ''
+					strings: '',
+					courseId:''
 				},
 				
 				// 讲师信息
@@ -211,6 +228,7 @@
 				
 				// 课程id
 				courseid:'0',
+				// 章节id
 				chapter:'0'
 			}
 		},
@@ -244,12 +262,14 @@
 					url:`/pages/pay/pay?courseid=${this.courseid}&detail=${content}`
 				});
 			},
+			
 			// 立即学习按钮
 			buttonClick1(e){
 				uni.navigateTo({
 					url:`/pages/chapters/chapters?courseid=${this.courseid}`
 				});
 			},
+			
 			// 试看链接
 			chapters(){
 				console.log("试看 ")
@@ -275,7 +295,7 @@
 						courseId: id
 					},
 					success(res){
-						console.log(res);
+						// console.log(res);
 						if(res.data.data){
 							// 获取章节列表信息
 							that.chapterList = res.data.data.data;
@@ -303,11 +323,11 @@
 						courseId: id,
 					},
 					success(res){
-						console.log(res)
+						// console.log(res)
 						const CourseDetail = res.data.data;
 						if(CourseDetail){
 							that.datail={
-								outCourseId: CourseDetail.outCourseId,
+								outCourseId: CourseDetail.outCourseId,//抖音课程id
 								'banner':CourseDetail.showPicUri,// 课程图片
 								'title':CourseDetail.title,// 课程标题
 								'showPrice':CourseDetail.showPrice,// 课程划线价格
@@ -316,6 +336,7 @@
 								'anchorTitle':CourseDetail.anchorTitle, //视频挂载标题
 								'strings':CourseDetail.note,// 课程详情
 								'stage':CourseDetail.stage,// 课程状态
+								'courseId':CourseDetail.courseId //课程id
 							}
 							// 设置导航条
 							uni.setNavigationBarTitle({
@@ -354,7 +375,7 @@
 						id: id
 					},
 					success(res) {
-						console.log(res)
+						// console.log(res)
 						const TeacherDetail = res.data.data;
 						that.teacher={
 							'userimg':TeacherDetail.headimgurl,
