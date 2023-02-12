@@ -52,13 +52,16 @@
 					},
 					success(res) {
 						console.log(res)
-						//没有数据  0没有数据 1有数据
-						if(res.data.data.total==0){
-							that.hascourse = 0
-						}else{
-							that.hascourse = 1
-							that.courselist = res.data.data.data
+						if(res.data.code==0){
+							//没有数据  0没有数据 1有数据
+							if(res.data.data.total==0){
+								that.hascourse = 0
+							}else{
+								that.hascourse = 1
+								that.courselist = res.data.data.data
+							}
 						}
+						
 					},
 					fail:(res)=> {
 						console.log(res);

@@ -134,6 +134,12 @@
 			// console.log("登陆账号的token为："+uni.getStorageSync('login_session'))
 			
 			// 获取课程列表
+			// this.GetCourseList()
+		},
+		onShow() {
+			// if(uni.getStorageSync('login_session')){
+			// 	this.GetCourseList()
+			// }
 			this.GetCourseList()
 		},
 		methods: {

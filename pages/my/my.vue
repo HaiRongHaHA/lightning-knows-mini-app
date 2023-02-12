@@ -3,11 +3,11 @@
 		<view class="userInfo">
 			<view class="userimgbox">
 				<image class="avatar_img" v-if="infos.avatarUrl" :src="infos.avatarUrl" mode="aspectFill"></image>
-				<image class="avatar_img" v-else src="https://img.cdn.zhishitong.vip/s3/1364932886/Zv9LeK1.jpg" mode="aspectFill"></image>
+				<image class="avatar_img" v-else src="https://p9-passport.byteacctimg.com/img/mosaic-legacy/3795/3047680722~300x300.image" mode="aspectFill"></image>
 			</view>
 			<view class="logo-title uni-mr-5" v-if="infos.nickName">{{infos.nickName}}</view>
+			<image class="img-update" v-if="infos.nickName" src="../../static/icon/undate.png" @click="updataUserInfo"></image>
 			<view class="logo-title uni-mr-5" v-else  @click="getUserInfos()">立即登陆</view>
-			<image class="img-update" src="../../static/icon/undate.png" @click="updataUserInfo"></image>
 		</view>
 		<view class="user-list">
 			<view class="list-item" @click="teacherapply()">
@@ -58,8 +58,11 @@
 			// 	title: `网页吊起支付`,
 			// 	icon: 'none'
 			// })
-			this.getUserInfos()
+			// this.getUserInfos()
 			// console.log(this.infos)
+		},
+		onShow() {
+			this.getUserInfos()
 		},
 		methods: {
 			// start(){

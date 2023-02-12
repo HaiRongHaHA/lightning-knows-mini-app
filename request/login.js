@@ -10,53 +10,73 @@ export const wx_login =()=>{
 				
 				uni.setStorageSync('login_oauth','DY')
 			}
-			// console.log(uni.getStorageSync('login_oauth'))
+			console.log(uni.getStorageSync('login_oauth'))
 			// uni.setStorageSync('base_oauth',res.data.data)
 			
-			// 小程序登陆
-			uni.login({
-				provider:res.provider[0],
-				success:function(loginRes){
-					console.log(loginRes);
-					// 获取登陆信息
-					uni.getUserInfo({
-					  provider: res.provider[0],
-					  success: function (infoRes){
-							console.log(infoRes);
-							uni.setStorageSync('login_userInfo',infoRes.userInfo);
-							// 数据传递到后端
-							uni.request({
-								url: uni.LOGIN_DY_URL,
-								method:"POST",
-								data: {
-									code:loginRes.code,
-									info:infoRes.userInfo
-								},
-								success: (res)=>{
-									if(res.data.code == 0){
-										console.log('已经登陆成功，获取token'+res.data.data.token);
-										uni.setStorageSync('login_session',res.data.data.token);
-										login_refresh()
+			uni.showModal({
+				title:'使用抖音账号登陆',
+				content: '允许登陆后能更好的同步信息',
+				success: function (res) {
+					console.log(res)
+					if (res.confirm==true) {
+						console.log('用户点击确定');
+						
+						// 小程序登陆
+						uni.login({
+							provider:uni.getStorageSync('login_oauth'),
+							success:function(loginRes){
+								console.log(loginRes);
+								// 获取登陆信息
+								uni.getUserInfo({
+								  provider: uni.getStorageSync('login_oauth'),
+								  success: function (infoRes){
+										console.log(infoRes);
+										uni.setStorageSync('login_userInfo',infoRes.userInfo);
+										// 数据传递到后端
+										uni.request({
+											url: uni.LOGIN_DY_URL,
+											method:"POST",
+											data: {
+												code:loginRes.code,
+												info:infoRes.userInfo
+											},
+											success: (res)=>{
+												if(res.data.code == 0){
+													console.log('已经登陆成功，获取token'+res.data.data.token);
+													uni.setStorageSync('login_session',res.data.data.token);
+													login_refresh()
+												}
+												
+												//重新调用index首页的onload
+											},
+											fail:(res)=> {
+												console.log(res);
+											}
+										});
+									},
+									fail:(res)=> {
+										console.log(res);
 									}
-									
-									//重新调用index首页的onload
-								},
-								fail:(res)=> {
-									console.log(res);
-								}
-							});
-						},
-						fail:(res)=> {
-							console.log(res);
-						}
-					});
-					
+								});
+								
+							},
+							fail:(res)=> {
+								console.log(res);
+							}
+						})
+						
+						
+					} else if(res.confirm==false){
+						console.log('用户点击取消');
+					}
 				},
-				fail:(res)=> {
+				fail: (res) => {
 					console.log(res);
 				}
-				
-			})
+			});
+			
+			
+			
 		},
 	})
 }
@@ -65,6 +85,8 @@ export const login_refresh =()=>{
 	const pages = getCurrentPages();
 	const curpage = pages[pages.length-1]
 	curpage.onLoad(curpage.options)
+	curpage.onShow()
+	// curpage.onReady()
 	console.log(curpage)
-	console.log(curpage.options)
+	// console.log(curpage.options)
 }
