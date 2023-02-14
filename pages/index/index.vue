@@ -188,7 +188,7 @@
 			columnOnclick(id){
 				// console.log(e)
 				uni.navigateTo({
-					url:`/pages/detail/detail?courseid=${id}`
+					url:`/pages/detail/detail?course_id=${id}`
 				});
 			},
 			

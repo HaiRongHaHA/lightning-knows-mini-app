@@ -233,13 +233,14 @@
 			}
 		},
 		onLoad(e){
-			if(e.courseid){
+			// console.log(e.course_id);
+			if(e.course_id){
 				// 获取当前的课程id
-				this.courseid = e.courseid
+				this.courseid = e.course_id
 				// 获取章节列表接口
-				this.getchapterslist(e.courseid)
+				this.getchapterslist(this.courseid)
 				// 获取课程详情接口
-				this.getcoursedetail(e.courseid)
+				this.getcoursedetail(this.courseid)
 			}
 			
 		},

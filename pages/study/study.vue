@@ -69,8 +69,9 @@
 				})
 			},
 			coursedetail(id){
+				// console.log("跳转详情页");
 				uni.navigateTo({
-					url:`/pages/detail/detail?courseid=${id}`
+					url:`/pages/detail/detail?course_id=${id}`
 				});
 			}
 		}
