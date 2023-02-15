@@ -237,8 +237,6 @@
 			if(e.course_id){
 				// 获取当前的课程id
 				this.courseid = e.course_id
-				// 获取章节列表接口
-				this.getchapterslist(this.courseid)
 				// 获取课程详情接口
 				this.getcoursedetail(this.courseid)
 			}
@@ -343,6 +341,10 @@
 							uni.setNavigationBarTitle({
 								title: that.datail.title
 							});
+							
+							// 获取章节列表接口
+							that.getchapterslist(that.courseid)
+							
 							// 获取导师信息
 							that.getTeacherDetail(CourseDetail.teacherId)
 							if(CourseDetail.hasPay==false){
