@@ -54,6 +54,17 @@
             }
         }
         ,{
+            "path" : "pages/audit/audit",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+                "usingComponents":{
+                    "zijie-pay-button":"/ttcomponents/DyPayButton/index"
+                }
+            }
+        }
+        ,{
             "path" : "pages/apply/apply",
             "style" :                                                                                    
             {

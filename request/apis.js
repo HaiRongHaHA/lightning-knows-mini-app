@@ -17,6 +17,14 @@ const apis = () => {
 	// 课程章节接口
 	uni.COURSE_CHAPTER = '/svod-api/out/xcx/chapter/page'
 
+	
+	// (抖音审核)课程详情
+	uni.AUDIT_COURSE_DETAIL = '/svod-api/out/xcx/course/audit/detail'
+
+	// (抖音审核)课程章节接口
+	uni.AUDIT_COURSE_CHAPTER = '/svod-api/out/xcx/chapter/audit/page'
+
+
 	// 获取讲师基本信息
 	uni.TEACHER_DETAIL = '/svod-api/out/xcx/teacher/info'
 
