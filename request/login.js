@@ -37,7 +37,7 @@ export const wx_login =()=>{
 							if(res.data.code == 0){
 								console.log('已经登陆成功，获取token'+res.data.data.token);
 								uni.setStorageSync('login_session',res.data.data.token);
-								// login_refresh()
+								login_refresh()
 							}
 							
 							//重新调用index首页的onload

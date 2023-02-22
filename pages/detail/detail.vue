@@ -464,10 +464,7 @@
 					    font-size: 24rpx;
 					    color: #999;
 					    display: inline-block;
-					    white-space: nowrap;
 					    width: 600rpx;
-					    overflow: hidden;
-					    text-overflow: ellipsis;
 					}
 				}
 			}

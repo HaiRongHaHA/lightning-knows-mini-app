@@ -342,11 +342,12 @@
 								title: that.datail.title
 							});
 							
-							// 获取章节列表接口
-							that.getchapterslist(that.courseid)
-							
 							// 获取导师信息
 							that.getTeacherDetail(CourseDetail.teacherId)
+							
+							// 获取章节列表接口
+							that.getchapterslist(that.courseid);
+							
 							if(CourseDetail.hasPay==false){
 								// 没有支付
 								that.hasPay = 1
@@ -431,68 +432,62 @@
 			}
 		}
 		
-		
-		
-		
-		/* user box  用户信息*/
-		/* .user_box{
-			width: 100%;
-			padding: 15px;
-			box-sizing: border-box;
-			background-color: #fff;
-			margin-top: 10px;
-		} */
+		// 讲师信息
 		.user{
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			padding: 24rpx;
 			/* background: #f8faff; */
-			border-radius: 4px;
+			border-radius: 8rpx;
+			width: 100%;
+			.user_info{
+				display: flex;
+				flex-direction: row;
+				.user_img{
+					width: 80rpx;
+					height: 80rpx;
+					display: block;
+					border-radius: 40rpx;
+				}
+				.user_base{
+					margin-left: 20rpx;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					.user_nickname{
+					    font-size: 28rpx;
+					    display: flex;
+					    align-items: center;
+					}
+					.user_desc{
+					    font-size: 24rpx;
+					    color: #999;
+					    display: inline-block;
+					    width: 600rpx;
+					}
+				}
+			}
+			
 		}
-		.user_info{
-			display: flex;
-			    flex-direction: row;
-		}
-		.user_img{
-			width: 40px;
-			height: 40px;
-			display: block;
-			border-radius: 20px;
-		}
-		.user_base{
-			margin-left: 10px;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-		}
-		.user_nickname{
-		    font-size: 14px;
-		    display: flex;
-		    align-items: center;
-		}
+		
+		
+		
+		
 		.user_course{
-			line-height: 20px;
-			margin: 0px 10px;
+			line-height: 40rpx;
+			margin: 0px 20rpx;
 			color: rgb(96, 123, 204);
-			border: 1px solid rgb(168, 170, 255);
-			font-size: 10px;
-			padding: 0px 5px;
+			border: 2rpx solid rgb(168, 170, 255);
+			font-size: 20rpx;
+			padding: 0px 10rpx;
 			white-space: nowrap;
 			height: max-content;
 		}
-		.user_desc{
-		    font-size: 12px;
-		    color: #999;
-		    display: inline-block;
-		    white-space: nowrap;
-		    width: 218px;
-		    overflow: hidden;
-		    text-overflow: ellipsis;
-		}
+		
 		.user_icon{
-			width: 8px;
-			height: 13px;	
+			width: 16rpx;
+			height: 26rpx;	
 		}
 		.user_list{
 			display: flex;
