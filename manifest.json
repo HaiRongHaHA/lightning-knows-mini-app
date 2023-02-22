@@ -80,5 +80,10 @@
         "devServer" : {
             "https" : true
         }
+    },
+    "mp-kuaishou" : {
+        "unipush" : {
+            "enable" : false
+        }
     }
 }

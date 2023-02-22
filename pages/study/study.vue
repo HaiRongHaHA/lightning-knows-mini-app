@@ -33,12 +33,12 @@
 				hascourse:0
 			}
 		},
-		onLoad() {
+		onLoad(){
 			
 		},
-		onShow() {
-			// 每次打开页面都请求刷新数据
+		onShow(){
 			this.req()
+			// console.log(tt.getStorageSync('login_userInfo'))
 		},
 		methods: {
 			req(){
@@ -51,7 +51,7 @@
 						'channel':uni.getStorageSync('login_oauth')
 					},
 					success(res) {
-						console.log(res)
+						// console.log(res)
 						if(res.data.code==0){
 							//没有数据  0没有数据 1有数据
 							if(res.data.data.total==0){

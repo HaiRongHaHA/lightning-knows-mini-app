@@ -96,8 +96,8 @@
 					url: uni.DY_PAY,
 					method:'POST',
 					header: {
-						'token': uni.getStorageSync('login_session') ,//自定义请求头信息
-						'channel':uni.getStorageSync('login_oauth')
+						'token': uni.getStorage('login_session') ,//自定义请求头信息
+						'channel':uni.getStorage('login_oauth')
 					},
 					data:{
 						courseId: "2",
@@ -168,8 +168,8 @@
 					url: uni.GET_PAYINFO,
 					method:'GET',
 					header: {
-						'token': uni.getStorageSync('login_session'), //获取登陆信息
-						'channel':uni.getStorageSync('login_oauth')
+						'token': uni.getStorage('login_session'), //获取登陆信息
+						'channel':uni.getStorage('login_oauth')
 					},
 					data:{
 						orderNo:orderNo

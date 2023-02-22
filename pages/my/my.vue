@@ -62,7 +62,12 @@
 			// console.log(this.infos)
 		},
 		onShow() {
-			this.getUserInfos()
+			// 每次打开页面都请求刷新数据
+			// 判断是否登陆过，登陆过就获取详细信息
+			// if(uni.getStorageSync('login_session')){
+				this.getUserInfos()
+			// }
+			
 		},
 		methods: {
 			// start(){
@@ -86,7 +91,6 @@
 			},
 			//获取用户信息
 			getUserInfos(){
-				console.log(uni.getStorageSync('login_userInfo'))
 				//判断是否存在登陆信息
 				if(uni.getStorageSync('login_userInfo')){
 					this.infos = uni.getStorageSync('login_userInfo')

@@ -27,17 +27,29 @@ Component({
     getGoodsInfo(res) {
 	  // console.log(res);
 	  // console.log(this.properties.courseId)
-	  tt.setStorage({
-	    key: "courseId",
-	    data: this.properties.courseId,
-	    success(res) {
-	      console.log(`setStorage保存成功`);
-	    },
-	    fail(res) {
-	      console.log(`setStorage调用失败`);
-	    },
-	  });
+	  // tt.setStorage({
+	  //   key: "courseId",
+	  //   data: this.properties.courseId,
+	  //   success(res) {
+	  //     console.log(res);
+	  //   },
+	  //   fail(res) {
+	  //     console.log(res);
+	  //   },
+	  // });
 	  
+	  // tt.redirectTo({
+	  // 		url: 'chapters',
+	  // 		success(res) {
+	  // 		  console.log('success执行了', res);
+	  // 		},
+	  // 		fail(err) {
+	  // 		  console.log('fail执行了', err);
+	  // 		},
+	  // 		complete(res) {
+	  // 		  console.log('complete执行了', res);
+	  // 		}
+	  // });
 	  return new Promise((resolve) => {
 		resolve({
 		  minLimits: 1,
@@ -54,10 +66,53 @@ Component({
     userLogin(event) {
       return new Promise((resolve) => {
         tt.login({
-          success() {
+          success(loginRes) {
+			  // console.log('登陆',loginRes);
             tt.getUserInfo({
-              success(res) {
-                console.log("login success", res)
+              success(infoRes) {
+                console.log("login success", infoRes)
+				
+				tt.setStorageSync('login_userInfo',infoRes.userInfo);
+				// tt.setStorage({
+				//   key: "login_userInfo",
+				//   data: infoRes.userInfo,
+				//   success(res) {
+				//     console.log(`setStorage调用成功`);
+				//   },
+				//   fail(res) {
+				//     console.log(`setStorage调用失败`);
+				//   },
+				// });
+				
+				// 数据传递到后端
+				// tt.request({
+				// 	url: 'https://api.sdknow.cn/svod-api/out/xcx/login/dy',
+				// 	method:"POST",
+				// 	data: {
+				// 		code:loginRes.code,
+				// 		info:infoRes.userInfo
+				// 	},
+				// 	success: (res)=>{
+				// 		if(res.data.code == 0){
+				// 			console.log('已经登陆成功，获取token:'+res.data.data.token);
+				// 			// uni.setStorageSync('login_session',res.data.data.token);
+				// 			// login_refresh()
+				// 		}
+				// 		//重新调用index首页的onload
+				// 	},
+				// 	fail:(res)=> {
+				// 		console.log(res);
+				// 	}
+				// });
+				// tt.getStorage({
+				//   key: "login_userInfo",
+				//   success(res) {
+				//     console.log(res.data);
+				//   },
+				//   fail(res) {
+				//     console.log("getStorage调用失败");
+				//   },
+				// });
                 resolve()
               },
               fail(res) {
@@ -90,6 +145,18 @@ Component({
 			  tt.switchTab({
 				  url: 'usr://pages/study/study'
 			  })
+			  // tt.redirectTo({
+			  // 		url: 'chapters',
+			  // 		success(res) {
+			  // 		  console.log('success执行了', res);
+			  // 		},
+			  // 		fail(err) {
+			  // 		  console.log('fail执行了', err);
+			  // 		},
+			  // 		complete(res) {
+			  // 		  console.log('complete执行了', res);
+			  // 		}
+			  // });
 			  console.log('支付成功')
 		  } else {
 			  tt.navigateBack();

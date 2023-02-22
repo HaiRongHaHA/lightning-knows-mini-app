@@ -1,4 +1,6 @@
 // vue.config.js
+
+// #ifdef MP-TOUTIAO
 const UniappToGroup = require('uniapp-to-group')
 module.exports = {
     configureWebpack: {
@@ -38,3 +40,4 @@ module.exports = {
         ]
     }
 }
+// #endif

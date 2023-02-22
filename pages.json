@@ -144,6 +144,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/detail/chapters",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	// 设置默认页面的窗口表现
 	"globalStyle": {

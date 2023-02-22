@@ -1,84 +1,62 @@
-export const wx_login =()=>{
-	// 获取服务商供应商
+export const getProvider =()=>{
 	uni.getProvider({
-		service: 'oauth',
+		service:'oauth',
 		success:function(res){
-			// console.log(res)
-			
 			// 保存登陆服务商
 			if(~res.provider.indexOf('toutiao')){
-				
 				uni.setStorageSync('login_oauth','DY')
 			}
 			console.log(uni.getStorageSync('login_oauth'))
-			// uni.setStorageSync('base_oauth',res.data.data)
-			
-			uni.showModal({
-				title:'使用抖音账号登陆',
-				content: '允许登陆后能更好的同步信息',
-				success: function (res) {
-					console.log(res)
-					if (res.confirm==true) {
-						console.log('用户点击确定');
-						
-						// 小程序登陆
-						uni.login({
-							provider:uni.getStorageSync('login_oauth'),
-							success:function(loginRes){
-								console.log(loginRes);
-								// 获取登陆信息
-								uni.getUserInfo({
-								  provider: uni.getStorageSync('login_oauth'),
-								  success: function (infoRes){
-										console.log(infoRes);
-										uni.setStorageSync('login_userInfo',infoRes.userInfo);
-										// 数据传递到后端
-										uni.request({
-											url: uni.LOGIN_DY_URL,
-											method:"POST",
-											data: {
-												code:loginRes.code,
-												info:infoRes.userInfo
-											},
-											success: (res)=>{
-												if(res.data.code == 0){
-													console.log('已经登陆成功，获取token'+res.data.data.token);
-													uni.setStorageSync('login_session',res.data.data.token);
-													login_refresh()
-												}
-												
-												//重新调用index首页的onload
-											},
-											fail:(res)=> {
-												console.log(res);
-											}
-										});
-									},
-									fail:(res)=> {
-										console.log(res);
-									}
-								});
-								
-							},
-							fail:(res)=> {
-								console.log(res);
+		}
+	})
+}
+
+export const wx_login =()=>{
+	//判断当前服务商
+	getProvider()
+	// 小程序登陆
+	uni.login({
+		provider:uni.getStorageSync('login_oauth'),
+		success:function(loginRes){
+			console.log(loginRes);
+			// 获取登陆信息
+			uni.getUserInfo({
+			  provider: uni.getStorageSync('login_oauth'),
+			  success: function (infoRes){
+					console.log(infoRes);
+					uni.setStorageSync('login_userInfo',infoRes.userInfo);
+					// 数据传递到后端
+					uni.request({
+						url: uni.LOGIN_DY_URL,
+						method:"POST",
+						data: {
+							code:loginRes.code,
+							info:infoRes.userInfo
+						},
+						success: (res)=>{
+							if(res.data.code == 0){
+								console.log('已经登陆成功，获取token'+res.data.data.token);
+								uni.setStorageSync('login_session',res.data.data.token);
+								// login_refresh()
 							}
-						})
-						
-						
-					} else if(res.confirm==false){
-						console.log('用户点击取消');
-					}
+							
+							//重新调用index首页的onload
+						},
+						fail:(res)=> {
+							console.log(res);
+						}
+					});
 				},
-				fail: (res) => {
+				fail:(res)=> {
 					console.log(res);
 				}
 			});
-			
-			
-			
 		},
+		fail:(res)=> {
+			console.log(res);
+		}
 	})
+	
 }
 
 export const login_refresh =()=>{
