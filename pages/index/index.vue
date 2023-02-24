@@ -108,6 +108,7 @@
 	//基础数据
 	// import menujson from '@/pages/index/menu.json'
 	// import coulumn from '@/pages/index/coulumn.json'
+	import { setStorageSync,getStorageSync } from '@/request/login.js'
 	
 	//金额小数点
 	import {toFixed} from '@/utils/utils'
@@ -152,11 +153,11 @@
 					url: uni.COURSE_LIST,
 					method:'GET',
 					header: {
-						'token': uni.getStorageSync('login_session'), //获取登陆信息
-						'channel':uni.getStorageSync('login_oauth')
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
 					},
 					success: (res) => {
-						console.log(res);
+						// console.log(res);
 						// 数据获取成功
 						if(res.data.code ==0){
 							that.column = res.data.data.data

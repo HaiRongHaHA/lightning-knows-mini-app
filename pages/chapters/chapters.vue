@@ -37,6 +37,7 @@
 </template>
 
 <script>
+	import { setStorageSync,getStorageSync } from '@/request/login'
 	export default {
 		data() {
 			return {
@@ -74,8 +75,8 @@
 					url: uni.COURSE_CHAPTER,
 					method:'GET',
 					header: {
-						'token': uni.getStorageSync('login_session'), //获取登陆信息
-						'channel':uni.getStorageSync('login_oauth')
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
 					},
 					data:{
 						courseId: id

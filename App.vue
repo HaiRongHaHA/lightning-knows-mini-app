@@ -1,6 +1,7 @@
 <script>
 	import interceptor from '@/request/interceptor.js'
 	import apis from '@/request/apis.js'
+	import { setStorageSync,getStorageSync } from '@/request/login.js'
 	export default {
 		onLaunch: function(){
 			interceptor()

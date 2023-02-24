@@ -343,7 +343,8 @@
 							});
 							
 							// 获取导师信息
-							that.getTeacherDetail(CourseDetail.teacherId)
+							// that.getTeacherDetail(CourseDetail.teacherId)
+							that.getTeacherCertInfo(CourseDetail.certId)
 							
 							// 获取章节列表接口
 							that.getchapterslist(that.courseid);
@@ -364,7 +365,32 @@
 					}
 				})
 			},
-			
+			// 获取讲师资质信息
+			getTeacherCertInfo(id){
+				const that = this
+				uni.request({
+					url: uni.TEACHER_CERT_INFO,
+					method:'GET',
+					data:{
+						certId: id
+					},
+					success(res){
+						console.log(res)
+						if(res.data.data){
+							const TeacherDetail = res.data.data.content;
+							that.teacher={
+								'userimg':TeacherDetail.imgUrl,
+								'nickname':TeacherDetail.nickname,
+								'userdesc':TeacherDetail.note,
+							}
+						}
+						
+					},
+					fail:(res)=> {
+						console.log(res.data);
+					}
+				})
+			},
 			// 获取讲师信息详情
 			getTeacherDetail(id){
 				const that = this;

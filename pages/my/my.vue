@@ -43,8 +43,7 @@
 
 <script>
 	
-	import {wx_login} from '@/request/login'
-	
+	import { setStorageSync,getStorageSync,wx_login } from '@/request/login.js'
 	export default{
 		data(){
 			return {
@@ -92,8 +91,8 @@
 			//获取用户信息
 			getUserInfos(){
 				//判断是否存在登陆信息
-				if(uni.getStorageSync('login_userInfo')){
-					this.infos = uni.getStorageSync('login_userInfo')
+				if(getStorageSync('login_userInfo')){
+					this.infos = getStorageSync('login_userInfo')
 				}else{
 					wx_login();
 				}

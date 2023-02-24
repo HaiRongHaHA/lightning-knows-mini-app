@@ -24,6 +24,7 @@
 </template>
 
 <script>
+	import { setStorageSync,getStorageSync } from '@/request/login.js'
 	export default {
 		data() {
 			return {
@@ -47,8 +48,8 @@
 					url: uni.STUDENT_ORDER,
 					method:'GET',
 					header: {
-						'token': uni.getStorageSync('login_session'), //获取登陆信息
-						'channel':uni.getStorageSync('login_oauth')
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
 					},
 					success(res) {
 						// console.log(res)

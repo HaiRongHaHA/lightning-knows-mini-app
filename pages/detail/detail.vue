@@ -44,7 +44,7 @@
 				</view>
 			</view>
 			<!-- 教师信息条 -->
-			<view class="user_box uni-mt-5">
+			<view class="user_box uni-mt-5" v-show="teacherinfo == 1">
 				<view class="user" >
 					<view class="user_info">
 						<image class="user_img" :src="teacher.userimg" mode="aspectFill"></image>
@@ -175,7 +175,7 @@
 </template>
 
 <script>
-	
+	import { setStorageSync,getStorageSync } from '@/request/login'
 	import {toFixed} from '@/utils/utils'
 	export default {
 		data() {
@@ -216,6 +216,7 @@
 					courseId:''
 				},
 				
+				teacherinfo:0,
 				// 讲师信息
 				teacher:{
 					userimg:'',
@@ -280,34 +281,6 @@
 				});
 			},
 			
-			// 获取章节列表
-			getchapterslist(id){
-				const that = this;
-				uni.request({
-					url: uni.COURSE_CHAPTER,
-					method:'GET',
-					header: {
-						'token': uni.getStorageSync('login_session'), //获取登陆信息
-						'channel':uni.getStorageSync('login_oauth')
-					},
-					data:{
-						courseId: id
-					},
-					success(res){
-						// console.log(res);
-						if(res.data.data){
-							// 获取章节列表信息
-							that.chapterList = res.data.data.data;
-							//获取章节总数
-							that.chapter = res.data.data.total;
-						}
-					},
-					fail:(res)=>{
-						console.log(res.data);
-					}
-				})
-			},
-			
 			// 获取课程详情
 			getcoursedetail(id){
 				const that = this;
@@ -315,14 +288,14 @@
 					url: uni.COURSE_DETAIL,
 					method:'GET',
 					header: {
-						'token': uni.getStorageSync('login_session'), //获取登陆信息
-						'channel':uni.getStorageSync('login_oauth')
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
 					},
 					data:{
 						courseId: id,
 					},
 					success(res){
-						// console.log(res)
+						console.log(res)
 						const CourseDetail = res.data.data;
 						if(CourseDetail){
 							that.datail={
@@ -342,11 +315,12 @@
 								title: that.datail.title
 							});
 							
-							// 获取导师信息
-							that.getTeacherDetail(CourseDetail.teacherId)
+							// 获取导师资质信息
+							// that.getTeacherDetail(CourseDetail.teacherId)
+							that.getTeacherCertInfo(CourseDetail.certId)
 							
 							// 获取章节列表接口
-							that.getchapterslist(that.courseid);
+							that.getchapterslist(CourseDetail.courseId);
 							
 							if(CourseDetail.hasPay==false){
 								// 没有支付
@@ -372,8 +346,8 @@
 					url: uni.TEACHER_DETAIL,
 					method:'GET',
 					header: {
-						'token': uni.getStorageSync('login_session'), //获取登陆信息
-						'channel':uni.getStorageSync('login_oauth')
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
 					},
 					data:{
 						id: id
@@ -391,8 +365,63 @@
 						console.log(res.data);
 					}
 				})
-			}
+			},
+			
+			// 获取讲师资质信息
+			getTeacherCertInfo(id){
+				const that = this
+				uni.request({
+					url: uni.TEACHER_CERT_INFO,
+					method:'GET',
+					data:{
+						certId: id
+					},
+					success(res){
+						console.log(res)
+						if(res.data.data){
+							const TeacherDetail = res.data.data.content;
+							that.teacher={
+								'userimg':TeacherDetail.imgUrl,
+								'nickname':TeacherDetail.nickname,
+								'userdesc':TeacherDetail.note,
+							}
+							// 显示讲师信息 1为显示 0为不显示
+							that.teacherinfo=1
+						}
+						
+					},
+					fail:(res)=> {
+						console.log(res.data);
+					}
+				})
+			},
 		
+			// 获取章节列表
+			getchapterslist(id){
+				const that = this;
+				uni.request({
+					url: uni.COURSE_CHAPTER,
+					method:'GET',
+					header: {
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
+					},
+					data:{
+						courseId: id
+					},
+					success(res){
+						if(res.data.data){
+							// 获取章节列表信息
+							that.chapterList = res.data.data.data;
+							//获取章节总数
+							that.chapter = res.data.data.total;
+						}
+					},
+					fail:(res)=>{
+						console.log(res.data);
+					}
+				})
+			},
 		}
 	}
 </script>
@@ -438,9 +467,7 @@
 			align-items: center;
 			justify-content: space-between;
 			padding: 24rpx;
-			/* background: #f8faff; */
 			border-radius: 8rpx;
-			width: 100%;
 			.user_info{
 				display: flex;
 				flex-direction: row;

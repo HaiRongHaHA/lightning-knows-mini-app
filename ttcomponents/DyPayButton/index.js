@@ -26,7 +26,7 @@ Component({
 	  
     getGoodsInfo(res) {
 	  // console.log(res);
-	  // console.log(this.properties.courseId)
+	  // console.log(this)
 	  // tt.setStorage({
 	  //   key: "courseId",
 	  //   data: this.properties.courseId,
@@ -36,19 +36,6 @@ Component({
 	  //   fail(res) {
 	  //     console.log(res);
 	  //   },
-	  // });
-	  
-	  // tt.redirectTo({
-	  // 		url: 'chapters',
-	  // 		success(res) {
-	  // 		  console.log('success执行了', res);
-	  // 		},
-	  // 		fail(err) {
-	  // 		  console.log('fail执行了', err);
-	  // 		},
-	  // 		complete(res) {
-	  // 		  console.log('complete执行了', res);
-	  // 		}
 	  // });
 	  return new Promise((resolve) => {
 		resolve({
@@ -67,11 +54,11 @@ Component({
       return new Promise((resolve) => {
         tt.login({
           success(loginRes) {
-			  // console.log('登陆',loginRes);
+				console.log('loginRes: ',loginRes);
+			tt.setStorageSync('login_loginRes',loginRes.code);
             tt.getUserInfo({
               success(infoRes) {
-                console.log("login success", infoRes)
-				
+                console.log("infoRes: ", infoRes)
 				tt.setStorageSync('login_userInfo',infoRes.userInfo);
 				// tt.setStorage({
 				//   key: "login_userInfo",
@@ -129,34 +116,26 @@ Component({
      const { status, orderId, outOrderNo, result } = options.detail
       console.log("onPay", status, orderId, outOrderNo, result)
 	 // if (status === 'success') {
+		 console.log(this);
+		 console.log(this.data.courseId);
 		  const { code } = result;
 		  // 支付成功
 		  if (code === 0) {
-			  // const courseid = tt.getgetStorage({
-				 //  key: "courseId",
-				 //  success(res) {
-				 //      console.log(res);
-				 //    },
-				 //    fail(res) {
-				 //      console.log("getStorage调用失败");
-				 //    },
+			  // tt.switchTab({
+				 //  url: 'usr://pages/study/study'
 			  // })
-			  // console.log(courseid);
-			  tt.switchTab({
-				  url: 'usr://pages/study/study'
-			  })
-			  // tt.redirectTo({
-			  // 		url: 'chapters',
-			  // 		success(res) {
-			  // 		  console.log('success执行了', res);
-			  // 		},
-			  // 		fail(err) {
-			  // 		  console.log('fail执行了', err);
-			  // 		},
-			  // 		complete(res) {
-			  // 		  console.log('complete执行了', res);
-			  // 		}
-			  // });
+			  tt.redirectTo({
+			  		url: `chapters?course_id=${this.data.courseId}`,
+			  		success(res) {
+			  		  console.log('success执行了', res);
+			  		},
+			  		fail(err) {
+			  		  console.log('fail执行了', err);
+			  		},
+			  		complete(res) {
+			  		  console.log('complete执行了', res);
+			  		}
+			  });
 			  console.log('支付成功')
 		  } else {
 			  tt.navigateBack();
