@@ -48,6 +48,7 @@
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false,
+				"disableSwipeBack":false,
                 "usingComponents":{
                     "zijie-pay-button":"/ttcomponents/DyPayButton/index"
                 }

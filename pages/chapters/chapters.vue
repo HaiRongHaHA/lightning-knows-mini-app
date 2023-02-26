@@ -56,16 +56,16 @@
 		onLoad(e) {
 		
 			// 获取当前的课程id
-			console.log(e);
 			this.courseid = e.courseid;
-			
+			const chapterData = JSON.parse(e.chapter);
 			// 获取章节列表接口
 			if(e.courseid){
 				this.getchapterslist(e.courseid);
+				
+				if(chapterData.chapterData){
+					this.choosewatch(chapterData.chapterData,chapterData.nub)
+				}
 			}
-			
-			
-			
 		},
 		methods: {
 			// 获取章节列表
@@ -82,13 +82,14 @@
 						courseId: id
 					},
 					success(res) {
-						console.log(res);
+						// console.log(res);
 						if(res.data){
 							// 获取章节列表信息
 							that.chapterList = res.data.data.data;
+							console.log(that.chapterList)
 							//获取章节总数
 							that.total = res.data.data.total;
-							// 默认执行
+							// 默认执行 当前列表章节点击
 							that.choosewatch(that.chapterList[0],0)
 						}
 					},
@@ -106,6 +107,7 @@
 				uni.setNavigationBarTitle({
 					title: item.title
 				});
+				
 				this.course = {
 					'mediaUri':item.mediaUri,
 					'title':item.title,

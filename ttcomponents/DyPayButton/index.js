@@ -26,6 +26,7 @@ Component({
 	  
     getGoodsInfo(res) {
 	  // console.log(res);
+	  
 	  // console.log(this)
 	  // tt.setStorage({
 	  //   key: "courseId",
@@ -60,46 +61,7 @@ Component({
               success(infoRes) {
                 console.log("infoRes: ", infoRes)
 				tt.setStorageSync('login_userInfo',infoRes.userInfo);
-				// tt.setStorage({
-				//   key: "login_userInfo",
-				//   data: infoRes.userInfo,
-				//   success(res) {
-				//     console.log(`setStorage调用成功`);
-				//   },
-				//   fail(res) {
-				//     console.log(`setStorage调用失败`);
-				//   },
-				// });
 				
-				// 数据传递到后端
-				// tt.request({
-				// 	url: 'https://api.sdknow.cn/svod-api/out/xcx/login/dy',
-				// 	method:"POST",
-				// 	data: {
-				// 		code:loginRes.code,
-				// 		info:infoRes.userInfo
-				// 	},
-				// 	success: (res)=>{
-				// 		if(res.data.code == 0){
-				// 			console.log('已经登陆成功，获取token:'+res.data.data.token);
-				// 			// uni.setStorageSync('login_session',res.data.data.token);
-				// 			// login_refresh()
-				// 		}
-				// 		//重新调用index首页的onload
-				// 	},
-				// 	fail:(res)=> {
-				// 		console.log(res);
-				// 	}
-				// });
-				// tt.getStorage({
-				//   key: "login_userInfo",
-				//   success(res) {
-				//     console.log(res.data);
-				//   },
-				//   fail(res) {
-				//     console.log("getStorage调用失败");
-				//   },
-				// });
                 resolve()
               },
               fail(res) {
@@ -121,21 +83,31 @@ Component({
 		  const { code } = result;
 		  // 支付成功
 		  if (code === 0) {
+			  tt.switchTab({
+				  url: 'user://pages/study/study'
+			  })
+			  
 			  // tt.switchTab({
-				 //  url: 'usr://pages/study/study'
+			  // 	url: 'usr://pages/study/study',
+			  // 		success(res){
+			  // 			console.log('success执行了', res);
+			  // 		},
+			  // 		fail(err) {
+			  // 		  console.log('fail执行了', err);
+			  // 		}
 			  // })
-			  tt.redirectTo({
-			  		url: `chapters?course_id=${this.data.courseId}`,
-			  		success(res) {
-			  		  console.log('success执行了', res);
-			  		},
-			  		fail(err) {
-			  		  console.log('fail执行了', err);
-			  		},
-			  		complete(res) {
-			  		  console.log('complete执行了', res);
-			  		}
-			  });
+			  // tt.redirectTo({
+			  // 		url: `chapters?course_id=${this.data.courseId}`,
+			  // 		success(res) {
+			  // 		  console.log('success执行了', res);
+			  // 		},
+			  // 		fail(err) {
+			  // 		  console.log('fail执行了', err);
+			  // 		},
+			  // 		complete(res) {
+			  // 		  console.log('complete执行了', res);
+			  // 		}
+			  // });
 			  console.log('支付成功')
 		  } else {
 			  tt.navigateBack();
@@ -143,14 +115,6 @@ Component({
 			    title: "支付失败", // 内容
 			    icon: "none", // 图标
 			  })
-			  // 支付失败（超时、取消、关闭）
-			 //  tt.navigateTo({
-				//   url:'usr://pages/orderfail/orderfail?coupon_price=' + this.data.hbprice + '&course_id=' + this.data.kcid + '&id=' + options.detail.outOrderNo
-			 //  })
-			 //  tt.showToast({
-				// title: "支付失败", // 内容
-				// icon: "none", // 图标
-			 //  });
 		  }
 	  // } else {
 		 //  const { errMsg } = result;
@@ -183,7 +147,12 @@ Component({
           title: "获取中", // 内容
           icon: "none", // 图标
         })
-      }
+      } else if(errNo===21506){
+		  tt.showToast({
+		    title: "课程不存在", // 内容
+		    icon: "none", // 图标
+		  })
+	  }
     },
   },
 })

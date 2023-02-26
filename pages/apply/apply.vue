@@ -67,6 +67,19 @@
 							},
 							success(res){
 								console.log(res);
+								uni.showModal({
+									title: '申请已经提交成功了！',
+									content: '点击确定返回哦～',
+									showCancel:false,
+									success: function (res) {
+										if (res.confirm) {
+											console.log('用户点击确定');
+											uni.navigateBack()
+										} else if (res.cancel) {
+											console.log('用户点击取消');
+										}
+									}
+								});
 							},
 							fail:(res)=> {
 								console.log(res.data);

@@ -84,7 +84,10 @@
 								</view>
 							</view>
 						</view>
-						<view class="right watch disable" style="margin-left: 10px;background: linear-gradient(rgb(73, 157, 255) 0%, rgb(142, 201, 255) 100%);">学习</view>
+						<!-- 是否购买  0已经支付  1没有支付  3默认全都不显示
+						hasPay:3, -->
+						<view class="right watch" v-if="hasPay==0" @click="GoStudyNow({chapterData:data,nub:index})">学习</view>
+						<view class="right watch disable" v-else-if="hasPay==1">学习</view>
 					</view>
 					
 				</view>
@@ -168,7 +171,7 @@
 				:options="options1" 
 				:button-group="customButtonGroup2" 
 				@click="onClick1"
-				@buttonClick="buttonClick1" 
+				@buttonClick="GoStudyNow" 
 				/>
 		</view>
 	</view>
@@ -264,9 +267,9 @@
 			},
 			
 			// 立即学习按钮
-			buttonClick1(e){
+			GoStudyNow(e){
 				uni.navigateTo({
-					url:`/pages/chapters/chapters?courseid=${this.courseid}`
+					url:`/pages/chapters/chapters?courseid=${this.courseid}&chapter=${JSON.stringify(e)}`
 				});
 			},
 			
@@ -295,7 +298,7 @@
 						courseId: id,
 					},
 					success(res){
-						console.log(res)
+						// console.log(res)
 						const CourseDetail = res.data.data;
 						if(CourseDetail){
 							that.datail={
@@ -322,6 +325,7 @@
 							// 获取章节列表接口
 							that.getchapterslist(CourseDetail.courseId);
 							
+							// 判断是否已经支付
 							if(CourseDetail.hasPay==false){
 								// 没有支付
 								that.hasPay = 1
@@ -377,7 +381,7 @@
 						certId: id
 					},
 					success(res){
-						console.log(res)
+						// console.log(res)
 						if(res.data.data){
 							const TeacherDetail = res.data.data.content;
 							that.teacher={
@@ -413,6 +417,7 @@
 						if(res.data.data){
 							// 获取章节列表信息
 							that.chapterList = res.data.data.data;
+							console.log(that.chapterList)
 							//获取章节总数
 							that.chapter = res.data.data.total;
 						}
@@ -632,10 +637,12 @@
 		    font-size: 24rpx;
 		    text-align: center;
 		    line-height: 40rpx;
-		    background: linear-gradient(18deg, #6A19D9, #EE7DFF);
+		    // background: linear-gradient(18deg, #6A19D9, #EE7DFF);
 		    color: #fff;
 		    padding: 4rpx 40rpx;
 		    border-radius: 30rpx;
+			margin-left: 10px;
+			background: linear-gradient(rgb(73, 157, 255) 0%, rgb(142, 201, 255) 100%);
 		}
 		
 		
