@@ -58,7 +58,7 @@ export const callafter =()=>{
 		method:"POST",
 		data: {
 			code:getStorageSync('login_loginRes'),
-			info:getStorageSync('login_userInfo')
+			...getStorageSync('login_userInfo')
 		},
 		success: (res)=>{
 			if(res.data.code == 0){

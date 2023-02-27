@@ -63,7 +63,7 @@ Component({
                   method:"POST",
                   data: {
                     code:tt.getStorageSync('login_loginRes'),
-                    info:tt.getStorageSync('login_userInfo')
+                    ...tt.getStorageSync('login_userInfo')
                   },
                   success: (res)=>{
                     if(res.data.code == 0){
