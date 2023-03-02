@@ -84,12 +84,12 @@
 								</view>
 							</view>
 						</view>
-						<!-- 是否购买  0已经支付  1没有支付  3默认全都不显示
-						hasPay:3, -->
-						<view class="right watch" v-if="hasPay==0" @click="GoStudyNow({chapterData:data,nub:index})">学习</view>
-						<view class="right watch disable" v-else-if="hasPay==1">学习</view>
+						<!--  这条章节免费 -->
+						<view class="right watch trywatch" v-if="data.free==true&&hasPay==1" @click="GoStudyTry()">试看</view>
+						<view class="right watch" v-else-if="hasPay==0" @click="GoStudyNow({chapterData:data,nub:index})">学习</view>
+						<view class="right watch disable" v-else @click="trysee()">学习</view>
+						
 					</view>
-					
 				</view>
 			</view>
 		
@@ -250,38 +250,43 @@
 			toFixed,
 			
 			// 立即支付按钮
-			buttonClick(e){
-				const detail = {
-					'userimg':this.teacher.userimg,
-					'nickname':this.teacher.nickname,
-					'banner':this.datail.banner,
-					'title':this.datail.title,
-					'price':this.datail.price,
-					'chapter':this.chapter
-				}
-				const content = JSON.stringify(detail)
-				// console.log(content);
-				uni.navigateTo({
-					url:`/pages/pay/pay?courseid=${this.courseid}&detail=${content}`
-				});
-			},
+			// buttonClick(e){
+			// 	const detail = {
+			// 		'userimg':this.teacher.userimg,
+			// 		'nickname':this.teacher.nickname,
+			// 		'banner':this.datail.banner,
+			// 		'title':this.datail.title,
+			// 		'price':this.datail.price,
+			// 		'chapter':this.chapter
+			// 	}
+			// 	const content = JSON.stringify(detail)
+			// 	// console.log(content);
+			// 	uni.navigateTo({
+			// 		url:`/pages/pay/pay?courseid=${this.courseid}&detail=${content}`
+			// 	});
+			// },
 			
-			// 立即学习按钮
+			// 立即学习按钮 	// 是否购买  0已经支付  1没有支付
 			GoStudyNow(e){
+				let str = JSON.stringify(e)
+				// console.log(this.hasPay)
 				uni.navigateTo({
-					url:`/pages/chapters/chapters?courseid=${this.courseid}&chapter=${JSON.stringify(e)}`
+					url:`/pages/chapters/chapters?courseid=${this.courseid}&chapter=${encodeURIComponent(str)}&hasPay=${this.hasPay}`
 				});
 			},
 			
-			// 试看链接
-			chapters(){
-				console.log("试看 ")
-				uni.navigateTo({
-					url:'/pages/chapters/chapters',
-					success: res => {},
-					fail: () => {},
-					complete: () => {}
-				});
+			GoStudyTry(e){
+				if(this.hasPay==1){
+					//没有支付
+					// uni.showToast({icon: 'none',title: '这里是试看'})
+					uni.navigateTo({
+						url:`/pages/chapters/chapters?courseid=${this.courseid}&hasTry=1`
+					});
+				}
+			},
+			// 试看章节
+			trysee(){
+				uni.showToast({icon: 'none',title: '请先购买课程哦～'})
 			},
 			
 			// 获取课程详情
@@ -637,14 +642,15 @@
 		    font-size: 24rpx;
 		    text-align: center;
 		    line-height: 40rpx;
-		    // background: linear-gradient(18deg, #6A19D9, #EE7DFF);
 		    color: #fff;
 		    padding: 4rpx 40rpx;
 		    border-radius: 30rpx;
 			margin-left: 10px;
 			background: linear-gradient(rgb(73, 157, 255) 0%, rgb(142, 201, 255) 100%);
 		}
-		
+		.trywatch{
+			background: rgb(255, 61, 49);
+		}
 		
 		/* 注意事项 */
 		.notice{

@@ -49,9 +49,12 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false,
 				"disableSwipeBack":false,
-                "usingComponents":{
-                    "zijie-pay-button":"/ttcomponents/DyPayButton/index"
-                }
+				// #ifdef MP-TOUTIAO
+				"usingComponents":{
+				    "zijie-pay-button":"/ttcomponents/DyPayButton/index"
+				}
+				// #endif
+                
             }
         }
         ,{
@@ -60,9 +63,11 @@
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false,
+				// #ifdef MP-TOUTIAO
                 "usingComponents":{
                     "zijie-pay-button":"/ttcomponents/DyPayButton/index"
                 }
+				// #endif
             }
         }
         ,{

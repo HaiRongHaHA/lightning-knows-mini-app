@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="video_box">
-			<video :src="course.mediaUri" controls></video>
+			<video :src="course.mediaUri" ref="myVideo" id="myVideo" controls show-loading></video>
 		</view>
 		<view class="content">
 			<view class="title">{{course.title}}</view>
@@ -50,26 +50,48 @@
 				total:'',
 				
 				current:null,
-				isActive:false
+				isActive:false,
+				
+				hasPay:'',
+				nub:''
 			}
 		},
+		onReady() {
+			this.videoContext = uni.createVideoContext('myVideo')
+			// console.log(this.videoContext)
+		},
 		onLoad(e) {
-		
-			// 获取当前的课程id
-			this.courseid = e.courseid;
-			const chapterData = JSON.parse(e.chapter);
-			// 获取章节列表接口
-			if(e.courseid){
-				this.getchapterslist(e.courseid);
-				
-				if(chapterData.chapterData){
-					this.choosewatch(chapterData.chapterData,chapterData.nub)
+			if(e.hasTry =='1'){
+				//当前为试看，1为试看
+				this.getchapterslist({
+					id:e.courseid,
+					nub:null,
+					hasPay:false,
+					hasTry:true
+				});
+			}else{
+				//当前正常购买
+				this.courseid = e.courseid;
+				let str = decodeURIComponent(e.chapter)
+				const chapterData = JSON.parse(str);
+				this.hasPay = e.hasPay;
+				this.nub = chapterData.nub;
+				console.log("是否支付 "+this.hasPay);
+				console.log("当前选择的是第"+this.nub+"章节");
+				if(e.courseid){
+					this.getchapterslist({
+						id:e.courseid,
+						nub:chapterData.nub,
+						hasPay:e.hasPay,
+						hasTry:false
+					});
 				}
 			}
 		},
 		methods: {
 			// 获取章节列表
-			getchapterslist(id){
+			getchapterslist(e){
+				// console.log(e);
 				const that = this;
 				uni.request({
 					url: uni.COURSE_CHAPTER,
@@ -79,18 +101,24 @@
 						'channel':getStorageSync('login_oauth')
 					},
 					data:{
-						courseId: id
+						courseId: e.id
 					},
 					success(res) {
 						// console.log(res);
 						if(res.data){
 							// 获取章节列表信息
 							that.chapterList = res.data.data.data;
-							console.log(that.chapterList)
+							
 							//获取章节总数
 							that.total = res.data.data.total;
-							// 默认执行 当前列表章节点击
-							that.choosewatch(that.chapterList[0],0)
+							
+							//判断是否是 选择具体章节跳转过来的
+							if(that.nub){
+								that.choosewatch(that.chapterList[that.nub],that.nub)
+							}else{
+								that.choosewatch(that.chapterList[0],0)
+							}
+							
 						}
 					},
 					fail:(res)=> {
@@ -101,26 +129,37 @@
 			
 			// 当前列表章节点击
 			choosewatch(item,index){
-				// console.log(item)
-				// console.log(index)
-				// 设置导航条
-				uni.setNavigationBarTitle({
-					title: item.title
-				});
+				// console.log(item)   具体内容
+				// console.log(index)  第几章节
+				// console.log(this.hasPay)
 				
-				this.course = {
-					'mediaUri':item.mediaUri,
-					'title':item.title,
-					'type':item.type
+				//章节数据免费的时候可以看 或者 已经支付的都可以看
+				if(item.free||this.hasPay){
+					// 设置导航条
+					uni.setNavigationBarTitle({
+						title: item.title
+					});
+					
+					this.course = {
+						'mediaUri':item.mediaUri,
+						'title':item.title,
+						'type':item.type
+					}
+					
+					if(this.current===index){
+						// this.isActive = !this.isActive; 
+						return console.log('fine')
+					}else{ 
+						this.isActive=true 
+					}
+					this.current=index
+				}else{
+					uni.showToast({
+						icon: 'none',
+						title: '课程未购买解锁哦～'
+					})
 				}
 				
-				if(this.current===index){
-					// this.isActive = !this.isActive; 
-					return console.log('fine')
-				}else{ 
-					this.isActive=true 
-				}
-				this.current=index
 			},
 		}
 	}
