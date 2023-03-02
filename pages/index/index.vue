@@ -82,8 +82,8 @@
 				<view class="column_item_left"><image :src="data.showPicUri" mode="aspectFill"></image></view>
 				<view class="column_item_right">
 					<view class="column_item_top">{{data.title}}</view>
-					<view class="column_item_center" v-if="data.payCnt == null">0人在学</view>
-					<view class="column_item_center" v-else>{{data.payCnt}}人在学</view>
+					<view class="column_item_center" v-if="data.showNum == null">0人在学</view>
+					<view class="column_item_center" v-else>{{data.showNum}}人在学</view>
 					<view class="column_item_bottom">
 						<view class="column_price">¥ {{toFixed(data.price)}}</view>
 						<view class="column_showPrice">¥ {{toFixed(data.showPrice)}}</view>
@@ -157,7 +157,7 @@
 						'channel':getStorageSync('login_oauth')
 					},
 					success: (res) => {
-						// console.log(res);
+						console.log(res);
 						// 数据获取成功
 						if(res.data.code ==0){
 							that.column = res.data.data.data

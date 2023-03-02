@@ -19,7 +19,7 @@ export const wx_login =()=>{
 	uni.login({
 		provider:getStorageSync('login_oauth'),
 		success:function(loginRes){
-			console.log(loginRes);
+			// console.log(loginRes);
 			setStorageSync('login_loginRes',loginRes.code);
 			// 获取登陆信息
 			uni.getUserInfo({
@@ -37,17 +37,7 @@ export const wx_login =()=>{
 		fail:(res)=> {
 			console.log(res);
 		}
-	})
-	
-	//判断登陆方式
-	// #ifdef MP-TOUTIAO
-	// if(tt.getStorageSync('login_loginRes')&&tt.getStorageSync('login_userInfo')){
-		
-	// 	setStorageSync('login_loginRes', tt.getStorageSync('login_loginRes') );
-	// 	setStorageSync('login_userInfo', tt.getStorageSync('login_userInfo') );
-	// 	callafter()
-	// }
-	// #endif
+	});
 	
 }
 
@@ -76,11 +66,14 @@ export const callafter =()=>{
 
 export const login_refresh =()=>{
 	const pages = getCurrentPages();
-	const curpage = pages[pages.length-1]
+	const curpage = pages[pages.length-1];
+	// console.log(curpage)
 	curpage.onLoad(curpage.options)
-	curpage.onShow()
+	if(curpage.onShow){
+		curpage.onShow()
+	}
+	
 	// curpage.onReady()
-	console.log(curpage)
 	// console.log(curpage.options)
 }
 

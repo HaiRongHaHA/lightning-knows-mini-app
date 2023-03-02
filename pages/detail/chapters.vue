@@ -56,10 +56,13 @@
 			// 获取当前的课程id
 			console.log(e);
 			this.courseid = e.courseid;
+			
 			// 获取章节列表接口
 			if(e.courseid){
 				this.getchapterslist(e.courseid);
 			}
+			
+			
 		},
 		methods: {
 			// 获取章节列表

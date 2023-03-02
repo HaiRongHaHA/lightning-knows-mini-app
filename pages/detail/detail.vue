@@ -178,7 +178,7 @@
 </template>
 
 <script>
-	import { setStorageSync,getStorageSync } from '@/request/login'
+	import { wx_login,setStorageSync,getStorageSync } from '@/request/login'
 	import {toFixed} from '@/utils/utils'
 	export default {
 		data() {
@@ -237,12 +237,22 @@
 			}
 		},
 		onLoad(e){
-			// console.log(e.course_id);
+			
 			if(e.course_id){
+				
 				// 获取当前的课程id
 				this.courseid = e.course_id
+				
 				// 获取课程详情接口
 				this.getcoursedetail(this.courseid)
+				
+				// #ifdef MP-TOUTIAO
+					const uni_options = uni.getLaunchOptionsSync();
+					// 027013 个人主页--抖音商城模块--我的订单--打开订单详情页
+					if(uni_options.scene =='027013'&&!getStorageSync('login_session')){
+						wx_login();
+					}
+				// #endif
 			}
 			
 		},
@@ -311,7 +321,7 @@
 								'banner':CourseDetail.showPicUri,// 课程图片
 								'title':CourseDetail.title,// 课程标题
 								'showPrice':CourseDetail.showPrice,// 课程划线价格
-								'study':CourseDetail.payCnt,// 课程在学人数
+								'study':CourseDetail.showNum,// 课程在学人数
 								'price':CourseDetail.price, //课程价格
 								'anchorTitle':CourseDetail.anchorTitle, //视频挂载标题
 								'strings':CourseDetail.note,// 课程详情
