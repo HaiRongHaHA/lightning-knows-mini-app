@@ -37,6 +37,9 @@ const apis = () => {
 	
 	//获取资质信息
 	uni.TEACHER_CERT_INFO = '/svod-api/out/xcx/cert/info'
+	
+	//获取退款详情
+	uni.ORDER_REFUND_INFO = '/svod-api/out/xcx/refund/info'
 }
 
 export default apis

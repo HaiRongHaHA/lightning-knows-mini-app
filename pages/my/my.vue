@@ -14,6 +14,10 @@
 				<view class="item-title">立即入驻</view>
 				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
 			</view>
+			<view class="list-item" @click="historyorder()">
+				<view class="item-title">历史订单</view>
+				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
+			</view>
 			<button open-type="contact">
 				<view class="list-item" style="margin-bottom: 0;">
 						<view class="item-title">咨询反馈</view>

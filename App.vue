@@ -6,7 +6,6 @@
 		onLaunch: function(){
 			interceptor()
 			apis()
-			
 			console.log('App Launch')
 			// 1、底部logo公共组建
 			// 2、立即入驻页面重新填写
