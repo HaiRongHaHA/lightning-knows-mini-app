@@ -66,15 +66,15 @@
 					<view :class="content_menu==2?'a2 active':'a2'" @click="content_menu = 2">目录</view>
 				</view>
 				<view class="course_ccc" v-show="content_menu ==1">
-					<view class="rich-text-box" style="padding: 40rpx;"><rich-text :nodes="datail.strings"></rich-text></view>
+					<view class="rich-text-box"><rich-text :nodes="datail.strings"></rich-text></view>
 				</view>
 				
 				<view class="course_list"  v-show="content_menu ==2">
 					<!--  @click="chapters(data.chapterId)" -->
 					<view class="course_list_item uni-py-5 uni-mx-5" v-for="(data,index) in chapterList" :key="index">
-						<view class="left" style="display: flex;align-items: center;">
-							<view class="course_nub" style="padding-right: 10px;">{{data.seq}}</view>
-							<view class="">
+						<view class="item_left">
+							<view class="course_nub">{{data.seq}}</view>
+							<view class="course_box">
 								<view class="list_item_title"><view class="list_item_tt">{{data.title}}</view></view>
 								<view class="list_item_content">
 									<view class="l_t_bq" v-if="data.type =='VIDEO'">视频</view>
@@ -591,76 +591,113 @@
 		/* 简介内容 */
 		.course_ccc{
 			
+			.rich-text-box{
+				padding: 30rpx;
+			}
 		}
-		/* 课程列表 */
+		
+		
+		/* 章节列表 */
 		.course_list{
 			/* padding-left: 15px;
 			padding-right: 15px;
 			padding-bottom: 20px *//* min-height: 200px; */;
-		}
-		.course_list_item{
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-			/* padding-top: 10px;
-			padding-bottom: 10px; */
-			border-bottom: 2rpx solid #dcdcdc;
-		}
-		.course_list_item:last-child{
-			border-bottom: none;
-		}
-		.course_nub{
-			font-size: 24rpx;
-		}
-		
-		.list_item_title{
-			display: flex;
-			align-items: center;
-		}
-		.list_item_tt{
-			margin-left: 10rpx;
-			font-size: 24rpx;
-			font-weight: 500;
-			color: #000;
-		}
-		.list_item_content{
-			display: flex;
-			font-size: 24rpx;
-			color: #666;
-			align-items: center;
-			margin-left: 10rpx;
-			margin-top: 20rpx;
-		}		
-		.l_t_bq{
-			border: 1px solid #3c95ff;
-			padding: 0 4px;
-			margin-right: 10px;
-			border-radius: 2px;
-			color: #3c95ff;
-		}
-		.l_t_time{
 			
+			.course_list_item{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				/* padding-top: 10px;
+				padding-bottom: 10px; */
+				border-bottom: 2rpx solid #dcdcdc;
+				
+				// 章节列表左边
+				.item_left{
+					display: flex;
+					align-items: center;
+					width: 100%;
+					max-width: 100%;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					
+					// 章节列表数字标
+					.course_nub{
+						font-size: 26rpx;
+						width: 40rpx;
+						max-width: 10%;
+						text-align: center;
+						margin-right: 10rpx;
+					}
+					
+					// 章节列表中间内容
+					.course_box{
+						width: 90%;
+						max-width: 90%;
+						
+						.list_item_title{
+							display: flex;
+							align-items: center;
+						}
+						.list_item_tt{
+							// margin-left: 10rpx;
+							font-size: 24rpx;
+							font-weight: 500;
+							color: #000;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							display: inline-block;
+						}
+						.list_item_content{
+							display: flex;
+							font-size: 24rpx;
+							color: #666;
+							align-items: center;
+							// margin-left: 10rpx;
+							margin-top: 20rpx;
+							
+							.l_t_bq{
+								border: 2rpx solid #3c95ff;
+								padding: 0 8rpx;
+								margin-right: 20rpx;
+								border-radius: 4rpx;
+								color: #3c95ff;
+							}
+						}
+					}
+					
+				}
+				
+				
+				// 章节列表右边 学习试看样式
+				.disable{
+				    background: #ccc!important;
+				}
+				.watch{
+				    height: 40rpx;
+				    width: 60rpx;
+				    font-size: 24rpx;
+				    text-align: center;
+				    line-height: 40rpx;
+				    color: #fff;
+				    padding: 4rpx 40rpx;
+				    border-radius: 30rpx;
+					margin-left: 20rpx;
+					background: linear-gradient(rgb(73, 157, 255) 0%, rgb(142, 201, 255) 100%);
+				}
+				.trywatch{
+					background: rgb(255, 61, 49);
+				}
+			}
+			.course_list_item:last-child{
+				border-bottom: none;
+			}
 		}
 		
-		.disable{
-		    background: #ccc!important;
-		}
-		.watch{
-		    height: 40rpx;
-		    width: 60rpx;
-		    font-size: 24rpx;
-		    text-align: center;
-		    line-height: 40rpx;
-		    color: #fff;
-		    padding: 4rpx 40rpx;
-		    border-radius: 30rpx;
-			margin-left: 10px;
-			background: linear-gradient(rgb(73, 157, 255) 0%, rgb(142, 201, 255) 100%);
-		}
-		.trywatch{
-			background: rgb(255, 61, 49);
-		}
+		
+		
 		
 		/* 注意事项 */
 		.notice{

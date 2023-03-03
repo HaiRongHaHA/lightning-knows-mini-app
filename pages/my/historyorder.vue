@@ -8,13 +8,13 @@
 			<view class="course-item">
 				<!-- 课程列表 -->
 				<view class="column uni-px-5">
-					<view class="column_item uni-py-5" v-for="(data,index) in courselist" :key="index">
+					<view class="column_item uni-py-5" v-for="(data,index) in courselist" :key="index" @click="coursedetail(data.courseId)">
 						<view class="column_item_left"><image :src="data.courseShowPicUrl" mode="aspectFill"></image></view>
 						<view class="column_item_right">
 							<view class="column_item_top">{{data.courseTitle}}</view>
 							<view class="column_item_bottom">
-								<view class="" @click="coursedetail(data.courseId)">查看课程</view>
-								<view class="" @click="applyrefoud()">申请退款</view>
+								<view class="">已购</view>
+								<!-- <view class="" @click="applyrefoud()">申请退款</view> -->
 							</view>
 						</view>
 					</view>
