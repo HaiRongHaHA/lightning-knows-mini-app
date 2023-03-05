@@ -12,8 +12,13 @@
 		</view> -->
 		<!-- banner 轮播图 uni-mt-5-->
 		<view class="swiper">
-			<swiper class="u-swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
-				<swiper-item @click="teacherapply"><view class="swiper-item"><image src="https://dgicdn.jiandou.vip/s3/1364932886/RWnda8W.png" mode="aspectFill"></image></view></swiper-item>
+			<swiper class="u-swiper" :indicator-dots="true" :autoplay="true" :interval="10000" :duration="500">
+				<swiper-item @click="teacherapply" v-for="(data,index) in BannerList" :key="index">
+					<view class="swiper-item">
+						<image :src="data.content" mode="aspectFill"></image>
+					</view>
+				</swiper-item>
+				<!-- <swiper-item @click="teacherapply"><view class="swiper-item"><image src="https://dgicdn.jiandou.vip/s3/1364932886/RWnda8W.png" mode="aspectFill"></image></view></swiper-item> -->
 			</swiper>
 		</view>
 		
@@ -97,8 +102,8 @@
 		<!-- 底部logo -->
 		<view class="logo" style="display: none;">
 			<!-- <image src="https://m.zhishitong.vip/static/img/dibu1.a589d064.png" mode=""></image> -->
-			<view class="loge_title">• 知识通 •</view>
-			<view class="loge_text">知识达人服务平台</view>
+			<!-- <view class="loge_title">• 知识通 •</view>
+			<view class="loge_text">知识达人服务平台</view> -->
 		</view>
 		
 	</view>
@@ -118,8 +123,13 @@
 			return {
 				// 菜单列表
 				menulist:[],
+				
+				// 首页banner图片
+				BannerList:[],
+				
 				// 课程列表
 				column:[],
+				
 				title: 'Hello',
 				keyword: "",
 				input:'',
@@ -142,22 +152,43 @@
 			// 	this.GetCourseList()
 			// }
 			this.GetCourseList()
+			
+			this.GetBannerList()
 		},
 		methods: {
 			// 金额小数点后两位
 			toFixed,
+			
+			// 获取首页bnaner图列表
+			GetBannerList(){
+				const that = this
+				uni.request({
+					url:uni.BANNER_LIST,
+					method:'GET',
+					data:{
+						page:"HOME_PAGE",
+						widget:"BANNER"
+					},
+					success:(res)=> {
+						console.log(res);
+						if(res.data.data){
+							that.BannerList = res.data.data
+						}
+					},
+					fail:(res)=> {
+						console.log(res);
+					}
+				})
+			},
+			
 			// 获取首页课程列表
 			GetCourseList(){
 				const that = this
 				uni.request({
 					url: uni.COURSE_LIST,
 					method:'GET',
-					header: {
-						'token': getStorageSync('login_session'), //获取登陆信息
-						'channel':getStorageSync('login_oauth')
-					},
 					success: (res) => {
-						console.log(res);
+						// console.log(res);
 						// 数据获取成功
 						if(res.data.code ==0){
 							that.column = res.data.data.data

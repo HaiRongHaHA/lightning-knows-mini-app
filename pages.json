@@ -136,7 +136,7 @@
             "path" : "pages/my/historyorder",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "我的订单",
                 "enablePullDownRefresh": false
             }
             
@@ -148,7 +148,6 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
         }
         ,{
             "path" : "pages/detail/chapters",
@@ -173,9 +172,9 @@
 		"selectedColor": "#2AA2F5",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
-		"iconWidth":"24px",
-		"spacing": "5px",
-		"fontSize": "24px",
+		"iconWidth":"10px",
+		"spacing": "20px",
+		"fontSize": "30px",
 		"list": [
 			{
 				"pagePath": "pages/index/index",

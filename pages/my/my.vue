@@ -5,17 +5,24 @@
 				<image class="avatar_img" v-if="infos.avatarUrl" :src="infos.avatarUrl" mode="aspectFill"></image>
 				<image class="avatar_img" v-else src="https://p9-passport.byteacctimg.com/img/mosaic-legacy/3795/3047680722~300x300.image" mode="aspectFill"></image>
 			</view>
-			<view class="logo-title uni-mr-5" v-if="infos.nickName">{{infos.nickName}}</view>
-			<image class="img-update" v-if="infos.nickName" src="../../static/icon/undate.png" @click="updataUserInfo"></image>
-			<view class="logo-title uni-mr-5" v-else  @click="getUserInfos()">立即登陆</view>
+			<view class="user-right">
+				<view class="user-top">
+					<view class="logo-title uni-mr-5" v-if="infos.nickName">{{infos.nickName}}</view>
+					<image class="img-update" v-if="infos.nickName" src="../../static/icon/undate.png" @click="updataUserInfo"></image>
+					<view class="logo-title uni-mr-5" v-else  @click="getUserInfos()">立即登陆</view>
+				</view>
+				<view class="user-bottom" v-if="userid">学号：<text @click="paste">{{userid}}</text></view>
+				<!-- <view class="user-bottom">学号：<text @click="paste">{{userid}}</text></view> -->
+			</view>
 		</view>
+		
 		<view class="user-list">
 			<view class="list-item" @click="teacherapply()">
 				<view class="item-title">立即入驻</view>
 				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
 			</view>
 			<view class="list-item" @click="historyorder()">
-				<view class="item-title">历史订单</view>
+				<view class="item-title">我的订单</view>
 				<view class="item-right"><image src="../../static/icon/right.png" mode=""></image></view>
 			</view>
 			<button open-type="contact">
@@ -52,6 +59,7 @@
 		data(){
 			return {
 				infos:[],
+				userid:'',
 				rotate:false
 			}
 		},
@@ -97,6 +105,7 @@
 				//判断是否存在登陆信息
 				if(getStorageSync('login_userInfo')){
 					this.infos = getStorageSync('login_userInfo')
+					console.log(this.userid = getStorageSync('login_userid'))
 				}else{
 					wx_login();
 				}
@@ -110,6 +119,18 @@
 			updataUserInfo(){
 				console.log("直接获取最新信息")
 				wx_login();
+			},
+			//paste
+			paste(){
+				if(this.userid){
+					uni.setClipboardData({
+						data: this.userid,
+						success: function () {
+							console.log('success');
+						}
+					});
+				}
+				
 			}
 		}
 	}
@@ -159,6 +180,22 @@
 			width: 40rpx;
 			height:40rpx
 		}
+		
+		.user-right{
+			display: flex;
+			flex-direction: column;
+			
+			.user-top{
+				display: flex;
+				align-items: center;
+			}
+			.user-bottom{
+				font-size: 14px;
+				color: #777474;
+				margin-top: 10px;
+			}
+		}
+		
 	}
 	// .userInfo image{
 	// 	width: 120rpx;

@@ -125,7 +125,7 @@
 		border-radius: 20rpx;
 		
 		.column_item{
-		    height: 80px;
+		    height: 160rpx;
 		    // margin-top: 19px;
 		    display: flex;
 			flex-direction: row;
@@ -140,7 +140,7 @@
 				
 				uni-image{
 					width: 212rpx;
-					height: 160rpx;
+					height: 100%;
 					border-radius: 12rpx;
 					display: inline-block;
 					overflow: hidden;
@@ -148,7 +148,7 @@
 				}
 				image{
 					width: 212rpx;
-					height: 160rpx;
+					height: 100%;
 					border-radius: 12rpx;
 					display: inline-block;
 					overflow: hidden;

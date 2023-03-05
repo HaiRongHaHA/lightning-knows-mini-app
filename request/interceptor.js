@@ -32,6 +32,7 @@ export const interceptor = () => {
 					icon: 'none',
 					title: msg
 				})
+				throw Error()
 			}
 		},
 		// 请求网络失败相关

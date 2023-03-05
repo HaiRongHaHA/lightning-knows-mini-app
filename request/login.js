@@ -52,8 +52,10 @@ export const callafter =()=>{
 		},
 		success: (res)=>{
 			if(res.data.code == 0){
-				console.log('已经登陆成功，获取token'+res.data.data.token);
+				console.log(res.data.data.user.id)
+				// console.log('已经登陆成功，获取token'+res.data.data.token);
 				setStorageSync('login_session',res.data.data.token);
+				setStorageSync('login_userid',res.data.data.user.id);
 				// 当前页面刷新
 				login_refresh()
 			}

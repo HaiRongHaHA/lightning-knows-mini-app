@@ -305,10 +305,6 @@
 				uni.request({
 					url: uni.COURSE_DETAIL,
 					method:'GET',
-					header: {
-						'token': getStorageSync('login_session'), //获取登陆信息
-						'channel':getStorageSync('login_oauth')
-					},
 					data:{
 						courseId: id,
 					},
@@ -364,10 +360,6 @@
 				uni.request({
 					url: uni.TEACHER_DETAIL,
 					method:'GET',
-					header: {
-						'token': getStorageSync('login_session'), //获取登陆信息
-						'channel':getStorageSync('login_oauth')
-					},
 					data:{
 						id: id
 					},
@@ -421,10 +413,6 @@
 				uni.request({
 					url: uni.COURSE_CHAPTER,
 					method:'GET',
-					header: {
-						'token': getStorageSync('login_session'), //获取登陆信息
-						'channel':getStorageSync('login_oauth')
-					},
 					data:{
 						courseId: id
 					},

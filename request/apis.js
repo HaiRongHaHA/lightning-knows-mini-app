@@ -8,7 +8,10 @@ const apis = () => {
 	// 获取订单支付状态
 	uni.GET_PAYINFO = '/svod-api/out/xcx/order/get/payinfo'
 
-	// 课程列表
+	// 首页 banner图片列表
+	uni.BANNER_LIST = '/svod-api/out/xcx/show/list'
+	
+	// 首页 课程列表
 	uni.COURSE_LIST = '/svod-api/out/xcx/course/page'
 
 	// 课程详情

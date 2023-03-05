@@ -6,7 +6,7 @@
 			<view class="form-title-content">联系方式</view>
 		</view>
 		<view class="example">
-			<uni-forms ref="form" :modelValue="formData"  label-position="top">
+			<uni-forms ref="form" :modelValue="formData"  label-position="top" :rules="rules">
 				<uni-forms-item name="name" label="姓名" required>
 					<uni-easyinput v-model="formData.name" type="text" placeholder="请输入姓名" />
 				</uni-forms-item>
@@ -18,6 +18,14 @@
 				</uni-forms-item>
 				<button  type="primary" class="button" @click="submit">申请入驻</button>
 			</uni-forms>
+			
+			<!-- <uni-forms  ref="form" :modelValue="formData">
+						<uni-forms-item name="age" label="年龄">
+							<uni-easyinput v-model="formData.age" type="text" placeholder="请输入年龄" />
+						</uni-forms-item>
+						
+						<button class="button" @click="submit">校验表单</button>
+					</uni-forms> -->
 		</view>
 		
 	</view>
@@ -33,13 +41,37 @@
 					note:''
 				},
 				rules: {
-					// ...
+					name: {
+						rules: [{
+								required: true,
+								errorMessage: '请输入姓名',
+							},
+							{
+								minLength: 2,
+								maxLength: 5,
+								errorMessage: '姓名长度在 {minLength} 到 {maxLength} 个字符',
+							}
+						]
+					},
+					phone: {
+						rules: [{
+								required: true,
+								errorMessage: '请输入手机号',
+							},
+							{
+								minLength: 11,
+								maxLength: 11,
+								errorMessage: '手机号长度最小在 {minLength} 个字符',
+							}
+						]
+					}
 				}
 			}
 			
 		},
 		onLoad() {
 			// this.formData.id = 'testId'	
+			this.formData.id = 'testId'
 		},
 		onReady() {
 			// 设置自定义表单校验规则，必须在节点渲染完毕后执行
@@ -50,6 +82,7 @@
 			submit() {
 				// 在 onLoad 生命周期中，formData添加了一个 id 字段 ，此时这个字段是不参数校验的，所以结果中不返回
 				// 在 validate(['id']) 方法中，指定第一个参数 ，即可返回id字段 ['id'],
+				
 				this.$refs.form.validate((err,formData)=>{
 					if(!err){
 						console.log('success',formData)

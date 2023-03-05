@@ -69,6 +69,6 @@
 <style>
  .content{
 	 padding: 20rpx 30rpx;
-	 font-size: 12px;
+	 font-size: 24rpx;
  }
 </style>

@@ -162,7 +162,7 @@
 		border-radius: 20rpx;
 		
 		.column_item{
-		    height: 80px;
+		    height: 160rpx;
 		    // margin-top: 19px;
 		    display: flex;
 			flex-direction: row;
@@ -176,16 +176,16 @@
 			    margin-right: 20rpx;
 				
 				uni-image{
-					width: 212rpx;
-					height: 160rpx;
+					width: 210rpx;
+					height: 100%;
 					border-radius: 12rpx;
 					display: inline-block;
 					overflow: hidden;
 					position: relative;
 				}
 				image{
-					width: 212rpx;
-					height: 160rpx;
+					width: 210rpx;
+					height: 100%;
 					border-radius: 12rpx;
 					display: inline-block;
 					overflow: hidden;
@@ -222,6 +222,7 @@
 				    background-color: #d4e2ff;
 				    padding: 4rpx 8rpx;
 				}
+				
 				.column_item_bottom{
 				    display: flex;
 				    justify-content: space-between;
