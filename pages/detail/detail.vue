@@ -79,6 +79,7 @@
 								<view class="list_item_content">
 									<view class="l_t_bq" v-if="data.type =='VIDEO'">视频</view>
 									<view class="l_t_bq" v-else-if="data.type =='VOICE'">音频</view>
+									<view class="l_t_bq" v-else-if="data.type =='IMG'">图片</view>
 									<view class="l_t_bq" v-else>课程</view>
 									<!-- <view class="l_t_time">时长：06:58</view> -->
 								</view>
@@ -305,6 +306,10 @@
 				uni.request({
 					url: uni.COURSE_DETAIL,
 					method:'GET',
+					header: {
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
+					},
 					data:{
 						courseId: id,
 					},
@@ -360,6 +365,10 @@
 				uni.request({
 					url: uni.TEACHER_DETAIL,
 					method:'GET',
+					header: {
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
+					},
 					data:{
 						id: id
 					},
@@ -384,6 +393,10 @@
 				uni.request({
 					url: uni.TEACHER_CERT_INFO,
 					method:'GET',
+					header: {
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
+					},
 					data:{
 						certId: id
 					},
@@ -413,6 +426,10 @@
 				uni.request({
 					url: uni.COURSE_CHAPTER,
 					method:'GET',
+					header: {
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
+					},
 					data:{
 						courseId: id
 					},
@@ -665,7 +682,7 @@
 				}
 				.watch{
 				    height: 40rpx;
-				    width: 60rpx;
+				    width: 70rpx;
 				    font-size: 24rpx;
 				    text-align: center;
 				    line-height: 40rpx;

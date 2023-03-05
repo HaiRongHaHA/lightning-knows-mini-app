@@ -187,6 +187,10 @@
 				uni.request({
 					url: uni.COURSE_LIST,
 					method:'GET',
+					header: {
+						'token': getStorageSync('login_session'), //获取登陆信息
+						'channel':getStorageSync('login_oauth')
+					},
 					success: (res) => {
 						// console.log(res);
 						// 数据获取成功

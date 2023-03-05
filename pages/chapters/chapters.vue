@@ -61,6 +61,7 @@
 			// console.log(this.videoContext)
 		},
 		onLoad(e) {
+			console.log(e);
 			if(e.hasTry =='1'){
 				//当前为试看，1为试看
 				this.getchapterslist({
@@ -101,6 +102,7 @@
 						'channel':getStorageSync('login_oauth')
 					},
 					data:{
+						// courseId:11
 						courseId: e.id
 					},
 					success(res) {
@@ -129,7 +131,7 @@
 			
 			// 当前列表章节点击
 			choosewatch(item,index){
-				// console.log(item)   具体内容
+				// console.log(item)   //具体内容
 				// console.log(index)  第几章节
 				// console.log(this.hasPay)
 				
@@ -153,6 +155,7 @@
 						this.isActive=true 
 					}
 					this.current=index
+					
 				}else{
 					uni.showToast({
 						icon: 'none',

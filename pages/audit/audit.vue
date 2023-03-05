@@ -79,6 +79,7 @@
 								<view class="list_item_content">
 									<view class="l_t_bq" v-if="data.type =='VIDEO'">视频</view>
 									<view class="l_t_bq" v-else-if="data.type =='VOICE'">音频</view>
+									<view class="l_t_bq" v-else-if="data.type =='IMG'">图片</view>
 									<view class="l_t_bq" v-else>课程</view>
 									<!-- <view class="l_t_time">时长：06:58</view> -->
 								</view>
@@ -294,7 +295,7 @@
 						courseId: id
 					},
 					success(res){
-						// console.log(res);
+						console.log(res);
 						if(res.data.data){
 							// 获取章节列表信息
 							that.chapterList = res.data.data.data;
@@ -375,7 +376,7 @@
 						certId: id
 					},
 					success(res){
-						console.log(res)
+						// console.log(res)
 						if(res.data.data){
 							const TeacherDetail = res.data.data.content;
 							that.teacher={
