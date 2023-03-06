@@ -136,9 +136,11 @@ Component({
       if (code === 0) {
 		  
 		tt.redirectTo({
-		  url: '/pages/chapters/chapters?courseid='+perpage.data.courseid+'&hasPay=0',
+		  url: '/pages/chapters/chapters?courseid='+this.data.courseId+'&hasPay=0',
 		  success(res) {
 			console.log('success执行了', res);
+			
+			console.log('跳转成功');
 		  },
 		  fail(err) {
 			console.log('fail执行了', err);
