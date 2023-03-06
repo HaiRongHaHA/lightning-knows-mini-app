@@ -132,11 +132,12 @@ Component({
 	  
       const { code } = result
 	  
+	  
       // 支付成功
       if (code === 0) {
-		  
+		
 		tt.redirectTo({
-		  url: '/pages/chapters/chapters?courseid='+this.data.courseId+'&hasPay=0',
+		  url: 'usr://pages/chapters/chapters?courseid='+this.data.courseId+'&hasPay=0',
 		  success(res) {
 			console.log('success执行了', res);
 			

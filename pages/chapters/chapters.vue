@@ -73,17 +73,21 @@
 			}else{
 				//当前正常购买
 				this.courseid = e.courseid;
-				let str = decodeURIComponent(e.chapter)
-				const chapterData = JSON.parse(str);
+				
+				//指定具体的章节
+				if(e.chapter){
+					let str = decodeURIComponent(e.chapter)
+					const chapterData = JSON.parse(str);
+					this.nub = chapterData.nub;
+				}
+				
 				this.hasPay = e.hasPay;
-				this.nub = chapterData.nub;
-				console.log("是否支付 "+this.hasPay);
-				console.log("当前选择的是第"+this.nub+"章节");
+				
 				if(e.courseid){
 					this.getchapterslist({
-						id:e.courseid,
-						nub:chapterData.nub,
-						hasPay:e.hasPay,
+						id:this.courseid,
+						nub:this.nub,
+						hasPay:this.hasPay,
 						hasTry:false
 					});
 				}
@@ -92,7 +96,7 @@
 		methods: {
 			// 获取章节列表
 			getchapterslist(e){
-				// console.log(e);
+				console.log(e);
 				const that = this;
 				uni.request({
 					url: uni.COURSE_CHAPTER,
@@ -106,7 +110,7 @@
 						courseId: e.id
 					},
 					success(res) {
-						// console.log(res);
+						console.log(res);
 						if(res.data){
 							// 获取章节列表信息
 							that.chapterList = res.data.data.data;
@@ -131,7 +135,7 @@
 			
 			// 当前列表章节点击
 			choosewatch(item,index){
-				// console.log(item)   //具体内容
+				console.log(item)   //具体内容
 				// console.log(index)  第几章节
 				// console.log(this.hasPay)
 				
