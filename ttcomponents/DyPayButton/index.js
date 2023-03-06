@@ -63,7 +63,8 @@ Component({
                   method:"POST",
                   data: {
                     code:tt.getStorageSync('login_loginRes'),
-                    ...tt.getStorageSync('login_userInfo')
+                    ...tt.getStorageSync('login_userInfo'),
+					nickname:tt.getStorageSync('login_userInfo').nickName
                   },
                   success: (res)=>{
                     if(res.data.code == 0){
@@ -79,6 +80,39 @@ Component({
               },
               fail(res) {
                 console.log("fail", res)
+				// console.log(this)
+				tt.showModal({
+					showCancel:false,
+					content: '点击【确认】，在【权限设置】页-打开【用户信息开关】-返回【我的页】点击立即登陆，即可完成更新信息',
+					success: function (res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+							tt.openSetting({
+								withSubscriptions:true,
+								success: (res) => {
+									// 获取登陆权限后重新刷新
+									const scopes = res.authSetting
+									const pages = getCurrentPages();
+									const perpage = pages[pages.length-1];
+									console.log(perpage)
+									console.log(perpage.data.courseid)
+									
+									tt.redirectTo({
+									  url: '/pages/detail/detail?course_id='+perpage.data.courseid,
+									  success(res) {
+										console.log('success执行了', res);
+									  },
+									  fail(err) {
+										console.log('fail执行了', err);
+									  }
+									});
+								}
+							})
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				})
               },
             })
           },
@@ -88,39 +122,29 @@ Component({
 
     onPay(options) {
       console.log(options)
+	  
       const { status, orderId, outOrderNo, result } = options.detail
       console.log("onPay", status, orderId, outOrderNo, result)
+	  
       // if (status === 'success') {
       console.log(this)
       console.log(this.data.courseId)
+	  
       const { code } = result
+	  
       // 支付成功
       if (code === 0) {
-        tt.switchTab({
-          url: "user://pages/study/study",
-        })
-
-        // tt.switchTab({
-        // 	url: 'usr://pages/study/study',
-        // 		success(res){
-        // 			console.log('success执行了', res);
-        // 		},
-        // 		fail(err) {
-        // 		  console.log('fail执行了', err);
-        // 		}
-        // })
-        // tt.redirectTo({
-        // 		url: `chapters?course_id=${this.data.courseId}`,
-        // 		success(res) {
-        // 		  console.log('success执行了', res);
-        // 		},
-        // 		fail(err) {
-        // 		  console.log('fail执行了', err);
-        // 		},
-        // 		complete(res) {
-        // 		  console.log('complete执行了', res);
-        // 		}
-        // });
+		  
+		tt.redirectTo({
+		  url: '/pages/chapters/chapters?courseid='+perpage.data.courseid+'&hasPay=0',
+		  success(res) {
+			console.log('success执行了', res);
+		  },
+		  fail(err) {
+			console.log('fail执行了', err);
+		  }
+		});
+		
         console.log("支付成功")
       } else {
         tt.navigateBack()

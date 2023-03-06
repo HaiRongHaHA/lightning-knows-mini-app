@@ -31,6 +31,27 @@ export const wx_login =()=>{
 				},
 				fail:(res)=> {
 					console.log(res);
+					// uni.showToast({
+					// 	icon: 'none',
+					// 	title: '获取用户信息权限失败'
+					// })
+					uni.showModal({
+						// showCancel:false,
+						content: '点击【确认】，在【权限设置】页-打开【用户信息开关】-返回【我的页】点击立即登陆，即可完成更新信息',
+						success: function (res) {
+							if (res.confirm) {
+								console.log('用户点击确定');
+								uni.openSetting({
+									success: (res) => {
+										console.log(res);
+										
+									}
+								})
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					})
 				}
 			});
 		},
@@ -43,16 +64,19 @@ export const wx_login =()=>{
 
 export const callafter =()=>{
 	// 数据传递到后端
+	const user = getStorageSync('login_userInfo')
+	console.log(user)
 	uni.request({
 		url: uni.LOGIN_DY_URL,
 		method:"POST",
 		data: {
 			code:getStorageSync('login_loginRes'),
-			...getStorageSync('login_userInfo')
+			...user,
+			nickname:user.nickName
 		},
 		success: (res)=>{
 			if(res.data.code == 0){
-				console.log(res.data.data.user.id)
+				// console.log(res.data.data.user.id)
 				// console.log('已经登陆成功，获取token'+res.data.data.token);
 				setStorageSync('login_session',res.data.data.token);
 				setStorageSync('login_userid',res.data.data.user.id);

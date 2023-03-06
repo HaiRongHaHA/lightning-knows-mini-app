@@ -238,7 +238,7 @@
 			}
 		},
 		onLoad(e){
-			
+			// console.log(e);
 			if(e.course_id){
 				
 				// 获取当前的课程id
@@ -437,7 +437,7 @@
 						if(res.data.data){
 							// 获取章节列表信息
 							that.chapterList = res.data.data.data;
-							console.log(that.chapterList)
+							// console.log(that.chapterList)
 							//获取章节总数
 							that.chapter = res.data.data.total;
 						}

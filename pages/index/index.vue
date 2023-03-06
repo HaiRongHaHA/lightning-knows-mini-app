@@ -13,7 +13,7 @@
 		<!-- banner 轮播图 uni-mt-5-->
 		<view class="swiper">
 			<swiper class="u-swiper" :indicator-dots="true" :autoplay="true" :interval="10000" :duration="500">
-				<swiper-item @click="teacherapply" v-for="(data,index) in BannerList" :key="index">
+				<swiper-item @click="teacherapply(data.url)" v-for="(data,index) in BannerList" :key="index">
 					<view class="swiper-item">
 						<image :src="data.content" mode="aspectFill"></image>
 					</view>
@@ -170,7 +170,7 @@
 						widget:"BANNER"
 					},
 					success:(res)=> {
-						console.log(res);
+						// console.log(res);
 						if(res.data.data){
 							that.BannerList = res.data.data
 						}
@@ -205,9 +205,10 @@
 			},
 			
 			// banner跳转申请页面
-			teacherapply(){
+			teacherapply(url){
+				console.log(url)
 				uni.navigateTo({
-					url: '/pages/apply/apply'
+					url: url
 				})
 			},
 			
