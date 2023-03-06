@@ -56,47 +56,63 @@
 				nub:''
 			}
 		},
-		onReady() {
+		onReady(){
 			this.videoContext = uni.createVideoContext('myVideo')
 			// console.log(this.videoContext)
 		},
 		onLoad(e) {
 			console.log(e);
-			if(e.hasTry =='1'){
-				//当前为试看，1为试看
-				this.getchapterslist({
-					id:e.courseid,
-					nub:null,
-					hasPay:false,
-					hasTry:true
-				});
-			}else{
-				//当前正常购买
-				this.courseid = e.courseid;
+			
+			const course_chapter = e;
+			this.watch = course_chapter.watch; // 看第几节
+			this.course_id = course_chapter.course_id; // 课程id
+			
+			// hasPay 是否购买  0已经支付  2试看
+			if(course_chapter.hasPay =='0'){
+				this.hasPay = '0'
+				this.getchapterslist({watch:this.watch})
 				
-				//指定具体的章节
-				if(e.chapter){
-					let str = decodeURIComponent(e.chapter)
-					const chapterData = JSON.parse(str);
-					this.nub = chapterData.nub;
-				}
+			}else if(course_chapter.hasPay =='2'){
+				//支持试看
+				this.hasPay = '2'
 				
-				this.hasPay = e.hasPay;
-				
-				if(e.courseid){
-					this.getchapterslist({
-						id:this.courseid,
-						nub:this.nub,
-						hasPay:this.hasPay,
-						hasTry:false
-					});
-				}
+				this.getchapterslist({watch:this.watch})
 			}
+			
+			// if(e.hasTry =='1'){
+			// 	//当前为试看，1为试看
+			// 	this.getchapterslist({
+			// 		courseid:e.courseid,
+			// 		nub:null,
+			// 		hasPay:false,
+			// 		hasTry:true
+			// 	});
+			// }else{
+			// 	//当前正常购买
+			// 	this.courseid = e.courseid;
+				
+			// 	//指定具体的章节
+			// 	if(e.chapter){
+			// 		let str = decodeURIComponent(e.chapter)
+			// 		const chapterData = JSON.parse(str);
+			// 		this.nub = chapterData.nub;
+			// 	}
+				
+			// 	this.hasPay = e.hasPay;
+				
+			// 	if(e.courseid){
+			// 		this.getchapterslist({
+			// 			id:this.courseid,
+			// 			nub:this.nub,
+			// 			hasPay:this.hasPay,
+			// 			hasTry:false
+			// 		});
+			// 	}
+			// }
 		},
 		methods: {
 			// 获取章节列表
 			getchapterslist(e){
-				console.log(e);
 				const that = this;
 				uni.request({
 					url: uni.COURSE_CHAPTER,
@@ -106,11 +122,11 @@
 						'channel':getStorageSync('login_oauth')
 					},
 					data:{
-						// courseId:11
-						courseId: e.id
+						courseId: that.course_id,
+						pageSize:999
 					},
 					success(res) {
-						console.log(res);
+						// console.log(res);
 						if(res.data){
 							// 获取章节列表信息
 							that.chapterList = res.data.data.data;
@@ -119,8 +135,9 @@
 							that.total = res.data.data.total;
 							
 							//判断是否是 选择具体章节跳转过来的
-							if(that.nub){
-								that.choosewatch(that.chapterList[that.nub],that.nub)
+							console.log(that.watch)
+							if(that.watch){
+								that.choosewatch(that.chapterList[that.watch],that.watch)
 							}else{
 								that.choosewatch(that.chapterList[0],0)
 							}
@@ -135,12 +152,12 @@
 			
 			// 当前列表章节点击
 			choosewatch(item,index){
-				console.log(item)   //具体内容
-				// console.log(index)  第几章节
+				// console.log(item)   //具体内容
+				console.log("看第章节: "+index)
 				// console.log(this.hasPay)
 				
 				//章节数据免费的时候可以看 或者 已经支付的都可以看
-				if(item.free||this.hasPay){
+				if(item.free||this.hasPay=="0"){
 					// 设置导航条
 					uni.setNavigationBarTitle({
 						title: item.title
@@ -151,15 +168,16 @@
 						'title':item.title,
 						'type':item.type
 					}
-					
 					if(this.current===index){
-						// this.isActive = !this.isActive; 
+						this.isActive = !this.isActive; 
 						return console.log('fine')
-					}else{ 
+					}else{
 						this.isActive=true 
 					}
+					
 					this.current=index
 					
+					// console.log(this.current)
 				}else{
 					uni.showToast({
 						icon: 'none',

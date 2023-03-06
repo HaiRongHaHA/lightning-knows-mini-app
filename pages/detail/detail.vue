@@ -86,8 +86,8 @@
 							</view>
 						</view>
 						<!--  这条章节免费 -->
-						<view class="right watch trywatch" v-if="data.free==true&&hasPay==1" @click="GoStudyTry()">试看</view>
-						<view class="right watch" v-else-if="hasPay==0" @click="GoStudyNow({chapterData:data,nub:index})">学习</view>
+						<view class="right watch trywatch" v-if="data.free==true&&hasPay==1" @click="GoStudyTry({index:index})">试看</view>
+						<view class="right watch" v-else-if="hasPay==0" @click="GoStudyNow({index:index})">学习</view>
 						<view class="right watch disable" v-else @click="trysee()">学习</view>
 						
 					</view>
@@ -238,7 +238,6 @@
 			}
 		},
 		onLoad(e){
-			// console.log(e);
 			if(e.course_id){
 				
 				// 获取当前的课程id
@@ -277,21 +276,24 @@
 			// 	});
 			// },
 			
-			// 立即学习按钮 	// 是否购买  0已经支付  1没有支付
+			// 立即学习按钮 	// hasPay 是否购买  0已经支付  1没有支付  2试看
 			GoStudyNow(e){
-				let str = JSON.stringify(e)
+				console.log(e)
+				// let str = JSON.stringify(e)
 				// console.log(this.hasPay)
+				// let watch = e.
 				uni.navigateTo({
-					url:`/pages/chapters/chapters?courseid=${this.courseid}&chapter=${encodeURIComponent(str)}&hasPay=${this.hasPay}`
+					// url:`/pages/chapters/chapters?courseid=${this.courseid}&chapter=${encodeURIComponent(str)}&hasPay=${this.hasPay}`
+					url:`/pages/chapters/chapters?course_id=${this.courseid}&hasPay=${this.hasPay}&watch=${e.index}`
 				});
 			},
-			
+			//试看
 			GoStudyTry(e){
+				console.log(e);
 				if(this.hasPay==1){
-					//没有支付
-					// uni.showToast({icon: 'none',title: '这里是试看'})
+					// hasPay 2 试看
 					uni.navigateTo({
-						url:`/pages/chapters/chapters?courseid=${this.courseid}&hasTry=1`
+						url:`/pages/chapters/chapters?course_id=${this.courseid}&hasPay=2&watch=${e.index}`
 					});
 				}
 			},
@@ -431,7 +433,8 @@
 						'channel':getStorageSync('login_oauth')
 					},
 					data:{
-						courseId: id
+						courseId: id,
+						pageSize:999
 					},
 					success(res){
 						if(res.data.data){

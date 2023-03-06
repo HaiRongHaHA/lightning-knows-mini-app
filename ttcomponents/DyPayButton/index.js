@@ -137,7 +137,7 @@ Component({
       if (code === 0) {
 		
 		tt.redirectTo({
-		  url: 'usr://pages/chapters/chapters?courseid='+this.data.courseId+'&hasPay=0',
+		  url: 'usr://pages/detail/detail?course_id='+this.data.courseId,
 		  success(res) {
 			console.log('success执行了', res);
 			

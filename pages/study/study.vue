@@ -51,6 +51,9 @@
 						'token': getStorageSync('login_session'), //获取登陆信息
 						'channel':getStorageSync('login_oauth')
 					},
+					data:{
+						pageSize:999
+					},
 					success(res) {
 						// console.log(res)
 						if(res.data.code==0){
