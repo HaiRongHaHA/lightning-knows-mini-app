@@ -139,14 +139,14 @@
 		padding: 20rpx;
 	}
 	.example{
-		padding: 0 20rpx 200rpx 20rpx;
+		padding: 0 60rpx 200rpx 60rpx;
 	}
 	.form-title{
 		position: relative;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		padding: 24rpx 20rpx;
+		padding: 24rpx 60rpx;
 		font-weight: 400;
 		font-size: 28rpx;
 	}

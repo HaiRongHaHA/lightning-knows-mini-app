@@ -136,17 +136,7 @@ Component({
       // 支付成功
       if (code === 0) {
 		
-		tt.redirectTo({
-		  url: 'usr://pages/detail/detail?course_id='+this.data.courseId,
-		  success(res) {
-			console.log('success执行了', res);
-			
-			console.log('跳转成功');
-		  },
-		  fail(err) {
-			console.log('fail执行了', err);
-		  }
-		});
+		
 		
         console.log("支付成功")
       } else {
@@ -156,6 +146,18 @@ Component({
           icon: "none", // 图标
         })
       }
+	  
+	  tt.redirectTo({
+	    url: 'usr://pages/detail/detail?course_id='+this.data.courseId,
+	    success(res) {
+	  	console.log('success执行了', res);
+	  	
+	  	console.log('跳转成功');
+	    },
+	    fail(err) {
+	  	console.log('fail执行了', err);
+	    }
+	  });
       // } else {
       //  const { errMsg } = result;
       // }

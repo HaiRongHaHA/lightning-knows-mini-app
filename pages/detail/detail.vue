@@ -741,6 +741,7 @@
 			right: var(--window-right);
 			/* #endif */
 			bottom: 0;
+			z-index: 1000;		
 		}
 		.bg-fff{
 			background-color: #fff;
