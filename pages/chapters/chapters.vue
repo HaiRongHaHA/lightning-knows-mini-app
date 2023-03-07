@@ -1,6 +1,10 @@
 <template>
 	<view>
-		<view class="video_box">
+		<view class="video_box" v-if="course.type=='IMG'">
+			<image class="myImg" :src="course.mediaUri" mode="widthFix"></image>
+			<!-- <video :src="course.mediaUri" ref="myVideo" id="myVideo" controls show-loading></video> -->
+		</view>
+		<view class="video_box" v-else>
 			<video :src="course.mediaUri" ref="myVideo" id="myVideo" controls show-loading></video>
 		</view>
 		<view class="content">
@@ -23,8 +27,11 @@
 					<view class="item_title">{{data.title}}</view>
 					<view class="item_content">
 						<view class="item_left">
-							<view class="sk" v-if="data.type=='VIDEO'">视频</view>
+							<view class="sk" v-if="data.type=='VIDEO'">视频 </view>
 							<view class="sk" v-else-if="data.type=='VOICE'">音频</view>
+							<view class="sk" v-else-if="data.type=='IMG'">图片</view>
+							<view class="sk" v-else>课程</view>
+							<!-- <view v-if="data.free"> 试看</view> -->
 							<!-- <view class="time">08:30</view>
 							<view class="sk1">试看</view> -->
 						</view>
@@ -64,58 +71,32 @@
 			console.log(e);
 			
 			const course_chapter = e;
-			this.watch = course_chapter.watch; // 看第几节
-			this.course_id = course_chapter.course_id; // 课程id
+			
+			// 看第几节
+			this.watch = course_chapter.watch;
+			
+			// 课程id
+			this.course_id = course_chapter.course_id; 
 			
 			// hasPay 是否购买  0已经支付  2试看
 			if(course_chapter.hasPay =='0'){
 				this.hasPay = '0'
-				this.getchapterslist({watch:this.watch})
 				
 			}else if(course_chapter.hasPay =='2'){
 				//支持试看
 				this.hasPay = '2'
-				
-				this.getchapterslist({watch:this.watch})
 			}
 			
-			// if(e.hasTry =='1'){
-			// 	//当前为试看，1为试看
-			// 	this.getchapterslist({
-			// 		courseid:e.courseid,
-			// 		nub:null,
-			// 		hasPay:false,
-			// 		hasTry:true
-			// 	});
-			// }else{
-			// 	//当前正常购买
-			// 	this.courseid = e.courseid;
-				
-			// 	//指定具体的章节
-			// 	if(e.chapter){
-			// 		let str = decodeURIComponent(e.chapter)
-			// 		const chapterData = JSON.parse(str);
-			// 		this.nub = chapterData.nub;
-			// 	}
-				
-			// 	this.hasPay = e.hasPay;
-				
-			// 	if(e.courseid){
-			// 		this.getchapterslist({
-			// 			id:this.courseid,
-			// 			nub:this.nub,
-			// 			hasPay:this.hasPay,
-			// 			hasTry:false
-			// 		});
-			// 	}
-			// }
+			this.getchapterslist()
+			
 		},
 		methods: {
 			// 获取章节列表
 			getchapterslist(e){
 				const that = this;
 				uni.request({
-					url: uni.COURSE_CHAPTER,
+					// url: uni.COURSE_CHAPTER,
+					url: uni.AUDIT_COURSE_CHAPTER,
 					method:'GET',
 					header: {
 						'token': getStorageSync('login_session'), //获取登陆信息
@@ -126,21 +107,18 @@
 						pageSize:999
 					},
 					success(res) {
-						// console.log(res);
+						console.log(res);
 						if(res.data){
 							// 获取章节列表信息
 							that.chapterList = res.data.data.data;
-							
+							// console.log(that.chapterList)
 							//获取章节总数
 							that.total = res.data.data.total;
 							
 							//判断是否是 选择具体章节跳转过来的
-							console.log(that.watch)
-							if(that.watch){
-								that.choosewatch(that.chapterList[that.watch],that.watch)
-							}else{
-								that.choosewatch(that.chapterList[0],0)
-							}
+							console.log('看章节：'+that.watch)
+							
+							that.choosewatch(that.chapterList[that.watch],that.watch)
 							
 						}
 					},
@@ -152,7 +130,7 @@
 			
 			// 当前列表章节点击
 			choosewatch(item,index){
-				// console.log(item)   //具体内容
+				console.log(item)   //具体内容
 				console.log("看第章节: "+index)
 				// console.log(this.hasPay)
 				
@@ -168,16 +146,16 @@
 						'title':item.title,
 						'type':item.type
 					}
+					
 					if(this.current===index){
-						this.isActive = !this.isActive; 
-						return console.log('fine')
+						// this.isActive = !this.isActive; 
+						return console.log('选择同一个章节')
 					}else{
 						this.isActive=true 
 					}
 					
-					this.current=index
+					this.current= Number(index)
 					
-					// console.log(this.current)
 				}else{
 					uni.showToast({
 						icon: 'none',
@@ -193,6 +171,11 @@
 <style lang="scss">
 	.video_box uni-video,video{
 		width: 100%;
+	}
+	.video_box{
+		.myImg{
+			width: 100%;
+		}
 	}
 	.content{
 		padding: 20rpx;
@@ -215,6 +198,7 @@
 	}
 	.list{
 		margin-top: 30rpx;
+		margin-bottom: 30rpx;
 	}
 	.list_title{
 		display: flex;

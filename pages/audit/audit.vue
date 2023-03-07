@@ -71,10 +71,11 @@
 				
 				<view class="course_list"  v-show="content_menu ==2">
 					<!--  @click="chapters(data.chapterId)" -->
+					
 					<view class="course_list_item uni-py-5 uni-mx-5" v-for="(data,index) in chapterList" :key="index">
-						<view class="left" style="display: flex;align-items: center;">
-							<view class="course_nub" style="padding-right: 10px;">{{data.seq}}</view>
-							<view class="">
+						<view class="item_left">
+							<view class="course_nub">{{index+1}}</view>
+							<view class="course_box">
 								<view class="list_item_title"><view class="list_item_tt">{{data.title}}</view></view>
 								<view class="list_item_content">
 									<view class="l_t_bq" v-if="data.type =='VIDEO'">视频</view>
@@ -85,7 +86,11 @@
 								</view>
 							</view>
 						</view>
-						<view class="right watch disable" style="margin-left: 10px;background: linear-gradient(rgb(73, 157, 255) 0%, rgb(142, 201, 255) 100%);">学习</view>
+						<!--  这条章节免费 -->
+						<view class="right watch trywatch" v-if="data.free==true&&hasPay==1" @click="GoStudyTry({index:index})">试看</view>
+						<view class="right watch" v-else-if="hasPay==0" @click="GoStudyNow({index:index})">学习</view>
+						<view class="right watch disable" v-else @click="trysee()">学习</view>
+						
 					</view>
 					
 				</view>
@@ -154,12 +159,12 @@
 			<!-- </uni-section> -->
 			
 			<!--  #ifdef MP-TOUTIAO -->
-			<zijie-pay-button
+			<!-- <zijie-pay-button
 			v-if="datail.outCourseId" 
 			:mode="2" 
 			:goodsId="datail.outCourseId"
 			:courseId="datail.courseId"
-			/>
+			/> -->
 			<!--  #endif -->
 		</view>
 		
@@ -269,7 +274,16 @@
 					url:`/pages/chapters/chapters?courseid=${this.courseid}`
 				});
 			},
-			
+			//试看
+			GoStudyTry(e){
+				console.log(e);
+				if(this.hasPay==1){
+					// hasPay 2 试看
+					uni.navigateTo({
+						url:`/pages/chapters/chapters?course_id=${this.courseid}&hasPay=2&watch=${e.index}`
+					});
+				}
+			},
 			// 试看链接
 			chapters(){
 				console.log("试看 ")
@@ -467,7 +481,7 @@
 			padding: 24rpx;
 			/* background: #f8faff; */
 			border-radius: 8rpx;
-			width: 100%;
+			// width: 100%;
 			.user_info{
 				display: flex;
 				flex-direction: row;

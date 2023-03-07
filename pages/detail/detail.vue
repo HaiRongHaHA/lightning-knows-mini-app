@@ -73,7 +73,7 @@
 					<!--  @click="chapters(data.chapterId)" -->
 					<view class="course_list_item uni-py-5 uni-mx-5" v-for="(data,index) in chapterList" :key="index">
 						<view class="item_left">
-							<view class="course_nub">{{data.seq}}</view>
+							<view class="course_nub">{{index+1}}</view>
 							<view class="course_box">
 								<view class="list_item_title"><view class="list_item_tt">{{data.title}}</view></view>
 								<view class="list_item_content">
@@ -238,6 +238,7 @@
 			}
 		},
 		onLoad(e){
+			console.log(e);
 			if(e.course_id){
 				
 				// 获取当前的课程id
@@ -259,31 +260,10 @@
 		methods: {
 			toFixed,
 			
-			// 立即支付按钮
-			// buttonClick(e){
-			// 	const detail = {
-			// 		'userimg':this.teacher.userimg,
-			// 		'nickname':this.teacher.nickname,
-			// 		'banner':this.datail.banner,
-			// 		'title':this.datail.title,
-			// 		'price':this.datail.price,
-			// 		'chapter':this.chapter
-			// 	}
-			// 	const content = JSON.stringify(detail)
-			// 	// console.log(content);
-			// 	uni.navigateTo({
-			// 		url:`/pages/pay/pay?courseid=${this.courseid}&detail=${content}`
-			// 	});
-			// },
-			
 			// 立即学习按钮 	// hasPay 是否购买  0已经支付  1没有支付  2试看
 			GoStudyNow(e){
 				console.log(e)
-				// let str = JSON.stringify(e)
-				// console.log(this.hasPay)
-				// let watch = e.
 				uni.navigateTo({
-					// url:`/pages/chapters/chapters?courseid=${this.courseid}&chapter=${encodeURIComponent(str)}&hasPay=${this.hasPay}`
 					url:`/pages/chapters/chapters?course_id=${this.courseid}&hasPay=${this.hasPay}&watch=${e.index}`
 				});
 			},
