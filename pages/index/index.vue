@@ -81,6 +81,7 @@
 		</view> -->
 		
 		<!-- 课程列表 uni-px-7-->
+		
 		<view class="column">
 			<view class="column_title">课程列表</view>
 			<view class="column_item uni-py-5" v-for="(data,index) in column" :key="index" @click.native="columnOnclick(data.courseId)">
@@ -97,6 +98,11 @@
 					</view>
 				</view>
 			</view>
+			<view v-show="isLoadMore">  
+			<!-- //loading加载提示处 -->
+				<uni-load-more :status="loadStatus" ></uni-load-more>
+			</view>
+			
 		</view>
 		
 		<!-- 底部logo -->
@@ -127,12 +133,16 @@
 				// 首页banner图片
 				BannerList:[],
 				
-				// 课程列表
-				column:[],
-				
 				title: 'Hello',
 				keyword: "",
 				input:'',
+				
+				// 课程列表
+				column:[],
+				page:1,
+				pagesize:10,
+				loadStatus:'loading',  //加载样式：more-加载前样式，loading-加载中样式，nomore-没有数据样式
+				isLoadMore:false,  //是否加载中
 			}
 		},
 		onLoad(){
@@ -154,6 +164,13 @@
 			this.GetCourseList()
 			
 			this.GetBannerList()
+		},
+		onReachBottom(){  //上拉触底函数
+			  if(!this.isLoadMore){  //此处判断，上锁，防止重复请求
+					this.isLoadMore=true
+					this.page+=1
+					this.GetCourseList()
+			  }
 		},
 		methods: {
 			// 金额小数点后两位
@@ -184,6 +201,7 @@
 			// 获取首页课程列表
 			GetCourseList(){
 				const that = this
+				that.column = []
 				uni.request({
 					url: uni.COURSE_LIST,
 					method:'GET',
@@ -192,13 +210,37 @@
 						'channel':getStorageSync('login_oauth')
 					},
 					success: (res) => {
-						// console.log(res);
+						console.log(res);
 						// 数据获取成功
-						if(res.data.code ==0){
-							that.column = res.data.data.data
+						if(res.data.code == 0){
+							
+							//判断数据存在
+							if(res.data.data.data){
+								that.column = that.column.concat(res.data.data.data)
+								if(res.data.data.data.length<that.pagesize){
+									//判断接口返回数据量小于请求数据量，则表示此为最后一页
+									  that.isLoadMore=true                                             
+									  that.loadStatus='nomore'
+								}else{
+									  that.isLoadMore=false
+								}
+							}else{
+								that.isLoadMore=true
+								that.loadStatus='nomore'
+							}
+							
+						}else{
+						  that.isLoadMore=false
+						  if(that.page>1){
+								that.page-=1
+						  }
 						}
 					},
 					fail:(res)=> {
+						that.isLoadMore=false
+						if(that.page>1){
+							that.page-=1
+						}
 						console.log(res);
 					}
 				})
@@ -228,35 +270,6 @@
 					url:`/pages/detail/detail?course_id=${id}`
 				});
 			},
-			
-			// 前往菜单页
-			// gotomenu(){
-			// 	uni.navigateTo({
-			// 		url:'/pages/detail/cate/cate',
-			// 		// url: '/pages/common/webview/webview?url=' + item.open_url + '&title=' + item.title,
-			// 		success: res => {},
-			// 		fail: () => {},
-			// 		complete: () => {}
-			// 	});
-			// },
-			
-			// 前往已购界面
-			// gotobuycourse(){
-			// 	uni.switchTab({
-			// 		url: '/pages/study/study'
-			// 	});
-			// },
-			
-			// 前往申请入驻界面
-			// gototeacherapply(){
-			// 	uni.navigateTo({
-			// 		url:'/pages/apply/apply',
-			// 		success: res => {},
-			// 		fail: () => {},
-			// 		complete: () => {}
-			// 	});
-			// },
-			
 			// 搜索跳转
 			searchClick(){
 				uni.navigateTo({

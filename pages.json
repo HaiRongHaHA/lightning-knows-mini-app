@@ -7,7 +7,9 @@
 			"style": {
 				"navigationBarTitleText": "闪电课堂",
 				"navigationBarBackgroundColor": "#fff",
-				"navigationStyle":"default"
+				"navigationStyle":"default",
+				"enablePullDownRefresh": false,
+				"onReachBottomDistance": 100
 			}
 		}
 	    ,{
