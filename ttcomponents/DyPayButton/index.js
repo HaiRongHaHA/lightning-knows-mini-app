@@ -51,68 +51,73 @@ Component({
     userLogin(event) {
       return new Promise((resolve) => {
         tt.login({
-          success:(loginRes)=> {
+          success: (loginRes) => {
             console.log("loginRes: ", loginRes)
             tt.setStorageSync("login_loginRes", loginRes.code)
             tt.getUserInfo({
-              success:(infoRes)=> {
+              success: (infoRes) => {
                 console.log("infoRes: ", infoRes)
                 tt.setStorageSync("login_userInfo", infoRes.userInfo)
                 tt.request({
-                  url: 'https://api.sdknow.cn/svod-api/out/xcx/login/dy',
-                  method:"POST",
+                  url: "https://api.sdknow.cn/svod-api/out/xcx/login/dy",
+                  method: "POST",
                   data: {
-                    code:tt.getStorageSync('login_loginRes'),
-                    ...tt.getStorageSync('login_userInfo'),
-					nickname:tt.getStorageSync('login_userInfo').nickName
+                    code: tt.getStorageSync("login_loginRes"),
+                    ...tt.getStorageSync("login_userInfo"),
+                    nickname: tt.getStorageSync("login_userInfo").nickName,
                   },
-                  success: (res)=>{
-                    if(res.data.code == 0){
-                      console.log('已经登陆成功，获取token'+res.data.data.token);
-                      tt.setStorageSync('login_session',res.data.data.token);
+                  success: (res) => {
+                    if (res.data.code == 0) {
+                      console.log(
+                        "已经登陆成功，获取token" + res.data.data.token
+                      )
+                      tt.setStorageSync("login_session", res.data.data.token)
                       resolve()
                     }
                   },
-                  fail:(res)=> {
-                    console.log(res);
-                  }
-                });
+                  fail: (res) => {
+                    console.log(res)
+                  },
+                })
               },
               fail(res) {
                 console.log("fail", res)
-				// console.log(this)
-				tt.showModal({
-					showCancel:false,
-					content: '点击【确认】，在【权限设置】页-打开【用户信息开关】-返回【我的页】点击立即登陆，即可完成更新信息',
-					success: function (res) {
-						if (res.confirm) {
-							console.log('用户点击确定');
-							tt.openSetting({
-								withSubscriptions:true,
-								success: (res) => {
-									// 获取登陆权限后重新刷新
-									const scopes = res.authSetting
-									const pages = getCurrentPages();
-									const perpage = pages[pages.length-1];
-									console.log(perpage)
-									console.log(perpage.data.courseid)
-									
-									tt.redirectTo({
-									  url: '/pages/detail/detail?course_id='+perpage.data.courseid,
-									  success(res) {
-										console.log('success执行了', res);
-									  },
-									  fail(err) {
-										console.log('fail执行了', err);
-									  }
-									});
-								}
-							})
-						} else if (res.cancel) {
-							console.log('用户点击取消');
-						}
-					}
-				})
+                // console.log(this)
+                tt.showModal({
+                  showCancel: false,
+                  content:
+                    "点击【确认】，在【权限设置】页-打开【用户信息开关】-返回【我的页】点击立即登陆，即可完成更新信息",
+                  success: function (res) {
+                    if (res.confirm) {
+                      console.log("用户点击确定")
+                      tt.openSetting({
+                        withSubscriptions: true,
+                        success: (res) => {
+                          // 获取登陆权限后重新刷新
+                          const scopes = res.authSetting
+                          const pages = getCurrentPages()
+                          const perpage = pages[pages.length - 1]
+                          console.log(perpage)
+                          console.log(perpage.data.courseid)
+
+                          tt.redirectTo({
+                            url:
+                              "/pages/detail/detail?course_id=" +
+                              perpage.data.courseid,
+                            success(res) {
+                              console.log("success执行了", res)
+                            },
+                            fail(err) {
+                              console.log("fail执行了", err)
+                            },
+                          })
+                        },
+                      })
+                    } else if (res.cancel) {
+                      console.log("用户点击取消")
+                    }
+                  },
+                })
               },
             })
           },
@@ -122,40 +127,37 @@ Component({
 
     onPay(options) {
       console.log(options)
-	  
+
       const { status, orderId, outOrderNo, result } = options.detail
       console.log("onPay", status, orderId, outOrderNo, result)
-	  
+
       // if (status === 'success') {
       console.log(this)
       console.log(this.data.courseId)
-	  
+
       const { code } = result
-	  
-	  
+
       // 支付成功
-      if(code === 0){
-        console.log("支付成功")
-		tt.redirectTo({
-		  url: 'usr://pages/detail/detail?course_id='+this.data.courseId,
-		  success(res) {
-			console.log('success执行了', res);
-			
-			console.log('跳转成功');
-		  },
-		  fail(err) {
-			console.log('fail执行了', err);
-		  }
-		});
-      }else{
+      if (code === 0) {
+        tt.redirectTo({
+					url:`usr://pages/chapters/chapters?course_id=${this.data.courseId}&hasPay=0&watch=${0}`,
+          success(res) {
+            console.log("success执行了", res)
+
+            console.log("跳转成功")
+          },
+          fail(err) {
+            console.log("fail执行了", err)
+          },
+        })
+      } else {
         tt.navigateBack()
         tt.showToast({
           title: "支付失败", // 内容
           icon: "none", // 图标
         })
       }
-	  
-	  
+
       // } else {
       //  const { errMsg } = result;
       // }

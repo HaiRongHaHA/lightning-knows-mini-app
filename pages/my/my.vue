@@ -11,7 +11,7 @@
 					<image class="img-update" v-if="infos.nickName" src="../../static/icon/undate.png" @click="updataUserInfo"></image>
 					<view class="logo-title uni-mr-5" v-else  @click="getUserInfos()">立即登陆</view>
 				</view>
-				<view class="user-bottom" v-if="userid">学号：<text @click="paste">{{userid}}</text></view>
+				<view class="user-bottom" v-if="userid"><text>学号：{{userid}}</text> <button @click="paste">复制学号</button> </view>
 				<!-- <view class="user-bottom">学号：<text @click="paste">{{userid}}</text></view> -->
 			</view>
 		</view>
@@ -126,7 +126,10 @@
 					uni.setClipboardData({
 						data: this.userid,
 						success: function () {
-							console.log('success');
+							uni.showToast({
+								icon: 'success',
+								title: '复制学号成功'
+							});
 						}
 					});
 				}
@@ -190,9 +193,21 @@
 				align-items: center;
 			}
 			.user-bottom{
+				display: flex;
+				align-items: center;
 				font-size: 14px;
 				color: #777474;
 				margin-top: 10px;
+				button{
+					font-size: 12px;
+					padding: 4px 8px;
+					border-radius:20px;
+					background-color: transparent;
+					border: 1px solid #3c95ff;
+					color: #3c95ff;
+					margin: 0;
+					margin-left: 16px;
+				}
 			}
 		}
 		

@@ -238,15 +238,9 @@
 			}
 		},
 		onLoad(e){
-			console.log(e);
 			if(e.course_id){
-				
 				// 获取当前的课程id
 				this.courseid = e.course_id
-				
-				// 获取课程详情接口
-				this.getcoursedetail(this.courseid)
-				
 				// #ifdef MP-TOUTIAO
 					const uni_options = uni.getLaunchOptionsSync();
 					// 027013 个人主页--抖音商城模块--我的订单--打开订单详情页
@@ -255,7 +249,10 @@
 					}
 				// #endif
 			}
-			
+		},
+		onShow(){
+			// 获取课程详情接口
+			this.getcoursedetail(this.courseid)
 		},
 		methods: {
 			toFixed,
