@@ -137,7 +137,7 @@
               @click="GoStudyNow({ index: index })"
               >学习</view
             >
-            <view class="right watch disable" v-else @click="trysee()"
+            <view class="right watch disable" v-else
               >学习</view
             >
           </view>
@@ -662,6 +662,9 @@ export default {
   display: flex;
   align-items: center;
 }
+.item_left{
+  display: flex;
+}
 .list_item_tt {
   margin-left: 10rpx;
   font-size: 24rpx;
@@ -699,6 +702,11 @@ export default {
   color: #fff;
   padding: 4rpx 40rpx;
   border-radius: 30rpx;
+  flex-shrink: 0;
+}
+
+.trywatch{
+  background: rgb(255, 61, 49);
 }
 
 /* 注意事项 */

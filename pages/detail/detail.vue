@@ -640,8 +640,6 @@
 							font-weight: 500;
 							color: #000;
 							overflow: hidden;
-							white-space: nowrap;
-							text-overflow: ellipsis;
 							display: inline-block;
 						}
 						.list_item_content{
