@@ -1,7 +1,11 @@
 <template>
 	<view>
 		<view class="video_box" v-if="course.type=='IMG'">
-			<image class="myImg" :src="course.mediaUri" mode="widthFix"></image>
+			<image 
+				class="myImg" 
+				:src="course.mediaUri"
+				mode="widthFix" 
+				@click="lookImage(0,[course.mediaUri])"></image>
 			<!-- <video :src="course.mediaUri" ref="myVideo" id="myVideo" controls show-loading></video> -->
 		</view>
 		<view class="video_box" v-else>
@@ -164,6 +168,12 @@
 				}
 				
 			},
+			lookImage(index, data){
+				uni.previewImage({
+					current: index,
+					urls: data
+				})
+			}
 		}
 	}
 </script>
