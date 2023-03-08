@@ -230,7 +230,7 @@
 				},
 				// 章节列表
 				chapterList:[],
-				
+				autoLogin: false,
 				// 课程id
 				courseid:'0',
 				// 章节id
@@ -241,16 +241,16 @@
 			if(e.course_id){
 				// 获取当前的课程id
 				this.courseid = e.course_id
-				// #ifdef MP-TOUTIAO
-					const uni_options = uni.getLaunchOptionsSync();
-					// 027013 个人主页--抖音商城模块--我的订单--打开订单详情页
-					if(uni_options.scene =='027013'&&!getStorageSync('login_session')){
-						wx_login();
-					}
-				// #endif
 			}
+			this.autoLogin = e.login
 		},
 		onShow(){
+			// 自动登录
+			if(this.autoLogin){
+				console.log('自动登录');
+				wx_login(this.getcoursedetail.bind(this,this.courseid));
+				return
+			}
 			// 获取课程详情接口
 			this.getcoursedetail(this.courseid)
 		},

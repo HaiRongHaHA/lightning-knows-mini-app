@@ -11,7 +11,7 @@ export const getProvider =()=>{
 	})
 }
 
-export const wx_login =()=>{
+export const wx_login =(cb)=>{
 	//判断当前服务商
 	getProvider()
 	
@@ -27,7 +27,7 @@ export const wx_login =()=>{
 			  success: function (infoRes){
 					console.log(infoRes);
 					setStorageSync('login_userInfo',infoRes.userInfo);
-					callafter()
+					callafter(cb)
 				},
 				fail:(res)=> {
 					console.log(res);
@@ -36,7 +36,8 @@ export const wx_login =()=>{
 					// 	title: '获取用户信息权限失败'
 					// })
 					uni.showModal({
-						// showCancel:false,
+						title:"提示",
+						showCancel:false,
 						content: '点击【确认】，在【权限设置】页-打开【用户信息开关】-返回【我的页】点击立即登陆，即可完成更新信息',
 						success: function (res) {
 							if (res.confirm) {
@@ -62,7 +63,7 @@ export const wx_login =()=>{
 	
 }
 
-export const callafter =()=>{
+export const callafter =(cb)=>{
 	// 数据传递到后端
 	const user = getStorageSync('login_userInfo')
 	console.log(user)
@@ -80,8 +81,11 @@ export const callafter =()=>{
 				// console.log('已经登陆成功，获取token'+res.data.data.token);
 				setStorageSync('login_session',res.data.data.token);
 				setStorageSync('login_userid',res.data.data.user.id);
-				// 当前页面刷新
-				login_refresh()
+				if(cb){
+					cb()
+				} else {
+					login_refresh()
+				}
 			}
 		},
 		fail:(res)=> {
