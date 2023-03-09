@@ -181,6 +181,7 @@
 <script>
 	import { wx_login,setStorageSync,getStorageSync } from '@/request/login'
 	import {toFixed} from '@/utils/utils'
+	import share from "@/utils/share.js"
 	export default {
 		data() {
 			return {
@@ -238,6 +239,7 @@
 			}
 		},
 		onLoad(e){
+			share()
 			if(e.course_id){
 				// 获取当前的课程id
 				this.courseid = e.course_id
@@ -253,6 +255,18 @@
 			}
 			// 获取课程详情接口
 			this.getcoursedetail(this.courseid)
+		},
+		onShareAppMessage() {
+			return {
+				title: this.datail.anchorTitle,
+				desc: '',
+				success() {
+					console.log("转发发布器已调起，并不意味着用户转发成功");
+				},
+				fail() {
+					console.log("转发发布器调起失败");
+				},
+			};
 		},
 		methods: {
 			toFixed,
@@ -687,8 +701,6 @@
 				border-bottom: none;
 			}
 		}
-		
-		
 		
 		
 		/* 注意事项 */

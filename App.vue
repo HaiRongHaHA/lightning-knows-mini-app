@@ -2,9 +2,11 @@
 import interceptor from "@/request/interceptor.js"
 import apis from "@/request/apis.js"
 import update from "@/utils/update.js"
+// import getPhone from "@/utils/getPhone.js"
+
 export default {
   onLaunch: function () {
-		update()
+    update()
     interceptor()
     apis()
     console.log("App Launch")
@@ -17,7 +19,9 @@ export default {
   onHide: function () {
     console.log("App Hide")
   },
-
+  methods: {
+    // getPhone,
+  },
 }
 </script>
 
