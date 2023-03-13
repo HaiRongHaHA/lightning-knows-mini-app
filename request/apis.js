@@ -43,6 +43,9 @@ const apis = () => {
 	
 	//获取退款详情
 	uni.ORDER_REFUND_INFO = '/svod-api/out/xcx/refund/info'
+	
+	//手机号解密
+	uni.DECRYPT = '/svod-api/out/xcx/dy/decrypt'
 }
 
 export default apis

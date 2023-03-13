@@ -47,7 +47,6 @@ Component({
         })
       })
     },
-
     userLogin(event) {
       return new Promise((resolve) => {
         tt.login({

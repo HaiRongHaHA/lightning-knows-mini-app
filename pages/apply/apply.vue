@@ -14,7 +14,7 @@
 					<uni-easyinput v-model="formData.phone" type="text" placeholder="请输入手机号" />
 				</uni-forms-item>
 				<uni-forms-item name="note" label="备注">
-					<uni-easyinput v-model="formData.note" type="textarea" placeholder="请输入备注信息" />
+					<uni-easyinput v-model="formData.note" type="textarea" placeholder="请输入微信号" />
 				</uni-forms-item>
 				<button  type="primary" class="button" @click="submit">申请入驻</button>
 			</uni-forms>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+	import share from "@/utils/share.js"
 	export default {
 		data() {
 			return {
@@ -70,6 +71,7 @@
 			
 		},
 		onLoad() {
+			share()
 			// this.formData.id = 'testId'	
 			this.formData.id = 'testId'
 		},
@@ -77,12 +79,17 @@
 			// 设置自定义表单校验规则，必须在节点渲染完毕后执行
 			// this.$refs.baseForm.setRules(this.baseForm)
 		},
+		onShareAppMessage() {
+			return {
+				title: '免费申请闪电课堂入驻',
+				desc: '',
+			};
+		},
 		methods: {
 			
 			submit() {
 				// 在 onLoad 生命周期中，formData添加了一个 id 字段 ，此时这个字段是不参数校验的，所以结果中不返回
 				// 在 validate(['id']) 方法中，指定第一个参数 ，即可返回id字段 ['id'],
-				
 				this.$refs.form.validate((err,formData)=>{
 					if(!err){
 						console.log('success',formData)
@@ -107,7 +114,15 @@
 									success: function (res) {
 										if (res.confirm) {
 											console.log('用户点击确定');
-											uni.navigateBack()
+											const pages = getCurrentPages()
+											console.log('pages',pages);
+											if(pages.length > 1) {
+												uni.navigateBack()
+											} else {
+												uni.switchTab({
+													url: '/pages/index/index'
+												})
+											}
 										} else if (res.cancel) {
 											console.log('用户点击取消');
 										}

@@ -144,6 +144,7 @@ import { setStorageSync, getStorageSync } from "@/request/login.js"
 
 //金额小数点
 import { toFixed } from "@/utils/utils"
+import share from "@/utils/share.js"
 
 export default {
   data() {
@@ -169,6 +170,7 @@ export default {
     }
   },
   onLoad() {
+		share()
     // this.menulist = menujson
     // this.column = coulumn
     // this.column.push()
@@ -193,6 +195,12 @@ export default {
       this.page += 1
       this.GetCourseList()
     }
+  },
+  onShareAppMessage() {
+    return {
+      title: '闪电课堂学习海量知识',
+      desc: '',
+    };
   },
   methods: {
     // 金额小数点后两位

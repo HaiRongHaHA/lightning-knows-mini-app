@@ -2,13 +2,15 @@
 import interceptor from "@/request/interceptor.js"
 import apis from "@/request/apis.js"
 import update from "@/utils/update.js"
-// import getPhone from "@/utils/getPhone.js"
+import getPhoneNumber from "@/utils/getPhone.js"
+import { getProvider } from '@/request/login.js'
 
 export default {
   onLaunch: function () {
     update()
     interceptor()
     apis()
+    getProvider()
     console.log("App Launch")
     // 1、底部logo公共组建
     // 2、立即入驻页面重新填写
@@ -20,7 +22,7 @@ export default {
     console.log("App Hide")
   },
   methods: {
-    // getPhone,
+    getPhoneNumber,
   },
 }
 </script>
